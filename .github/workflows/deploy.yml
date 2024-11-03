@@ -1,0 +1,276 @@
+name: Nuxt CD
+run-name: ${{ github.ref_name }}
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+concurrency: ${{ github.workflow }}-${{ github.ref_name }}
+
+env:
+  REPO: ${{ github.repository }}
+  REGISTRY: ${{ vars.REGISTRY }}
+  USERNAME: ${{ vars.USERNAME }}
+  PORT: ${{ vars.PORT }}
+  NODE_ENV: ${{ vars.NODE_ENV }}
+  NITRO_PRESET: ${{ vars.NITRO_PRESET }}
+
+jobs:
+  build_web:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
+    outputs:
+      image_name: ${{ steps.metadata.outputs.image_name }}
+      image_title: ${{ steps.metadata.outputs.image_title }}
+      buildtime: ${{ steps.metadata.outputs.buildtime }}
+      version: ${{ steps.metadata.outputs.version }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ env.USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.REPO }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix=sha-,format=short
+
+      - name: Set tags as environment variable
+        id: metadata
+        run: |
+          echo "Setting metadata to env variables"
+          echo "image_name=${{ fromJSON(steps.meta.outputs.json).tags[0] }}" >> $GITHUB_OUTPUT
+          echo "image_title=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}" >> $GITHUB_OUTPUT
+          echo "buildtime=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_OUTPUT
+          echo "version=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_OUTPUT
+
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BUILDTIME=${{ steps.metadata.outputs.buildtime }}
+            VERSION=${{ steps.metadata.outputs.version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.REPO }}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: false
+
+  deploy_web:
+    needs: build_web
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            # Pull new image
+            docker pull ${{ needs.build_web.outputs.image_name }}
+
+            # Stop the existing container
+            docker stop ${{ needs.build_web.outputs.image_title }} || true
+            docker rm ${{ needs.build_web.outputs.image_title }} || true
+
+            # Create and start new container
+            docker run --detach \
+              --name ${{ needs.build_web.outputs.image_title }} \
+              --restart unless-stopped \
+              --mount type=bind,source=$(pwd)/${{ needs.build_web.outputs.image_title }}/static,target=/app/static,readonly \
+              --env-file ~/${{ needs.build_web.outputs.image_title }}/.env.prod \
+              -p ${{ env.PORT }}:3000 \
+              ${{ needs.build_web.outputs.image_name }}
+
+            # Clean up unused images
+            docker image prune -f
+
+  build_desktop:
+    permissions:
+      contents: write
+
+    env:
+      PLATFORM_ENV: native
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: 'macos-latest' # for Arm based macs (M1 and above).
+            args: '--target aarch64-apple-darwin'
+
+          - platform: 'macos-latest' # for Intel based macs.
+            args: '--target x86_64-apple-darwin'
+
+          - platform: 'ubuntu-latest'
+            args: ''
+
+          - platform: 'windows-latest'
+            args: ''
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install OS Dependencies (Ubuntu only)
+        if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Bulid and Upload Artifact
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: ${{ matrix.args }}
+          tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
+          releaseName: 'v__VERSION__'
+          releaseDraft: true
+          prerelease: false
+
+  # deploy_desktop:
+  #   needs: build_desktop
+  #   runs-on: ubuntu-latest
+
+  build_mobile:
+    permissions:
+      contents: write
+
+    env:
+      PLATFORM_ENV: native
+      ANDROID_HOME:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: 'ubuntu-latest'
+            os: 'android'
+
+          # - platform: 'ubuntu-latest'
+          #   name: 'ios'
+          #   args: ''
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install OS Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Setup Android NDK
+        run: |
+          sdkmanager "ndk;27.0.11902837"
+          echo "NDK_HOME=${{ env.ANDROID_HOME }}/ndk/27.0.11902837" >> $GITHUB_ENV
+
+      - name: Setup Android Signing
+        run: |
+          cd native/gen/android
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
+          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> keystore.properties
+          base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/keystore.jks
+          echo "storeFile=$RUNNER_TEMP/keystore.jks" >> keystore.properties
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Bulid Artifact
+        run: pnpm tauri android build
+
+      - name: Upload Artifact
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
+          asset_name: Nuxtemplate_${{ github.ref }}_arm64.apk
+          tag: ${{ github.ref }}
+
+  # deploy_mobile:
+  #   needs: build_mobile
+  #   runs-on: ubuntu-latest

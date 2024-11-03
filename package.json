@@ -1,0 +1,67 @@
+{
+  "name": "nuxtemplate",
+  "version": "1.0.0",
+  "description": "Nuxt Template",
+  "author": "Shirsendu Bairagi <shirsendu2001@gmail.com>",
+  "license": "LGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shba007/nuxtemplate.git"
+  },
+  "type": "module",
+  "private": true,
+  "volta": {
+    "node": "22.11.0"
+  },
+  "engines": {
+    "node": "^18.0.0 || ^20.0.0 || ^22.0.0",
+    "pnpm": "^9.12.0"
+  },
+  "packageManager": "pnpm@9.12.3",
+  "scripts": {
+    "postinstall": "nuxt prepare",
+    "dev": "nuxt dev",
+    "lint": "eslint . --fix",
+    "format": "prettier .  --write",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "clean": "nuxt cleanup",
+    "start": "node .output/server/index.mjs",
+    "docker:build": "docker build --build-arg VERSION_TAG=dev -t nuxtemplate:dev .",
+    "docker:start": "docker run --detach --name nuxtemplate-dev --env-file .env.prod -p 1000:3000 nuxtemplate:dev",
+    "tunnel": "untun tunnel --port 3000 http://localhost:3000",
+    "tauri": "tauri",
+    "tauri:dev": "cross-env PLATFORM_ENV=native tauri dev",
+    "tauri:build": "cross-env PLATFORM_ENV=native tauri build",
+    "tauri:dev:mobile": "cross-env PLATFORM_ENV=native tauri android dev",
+    "tauri:build:mobile": "cross-env PLATFORM_ENV=native tauri android build"
+  },
+  "dependencies": {
+    "@nuxt/eslint": "^0.6.1",
+    "@nuxt/fonts": "^0.10.2",
+    "@nuxt/icon": "^1.6.1",
+    "@nuxt/image": "^1.8.1",
+    "@nuxt/scripts": "^0.9.5",
+    "@nuxt/test-utils": "^3.14.4",
+    "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/i18n": "^9.0.0",
+    "@nuxtjs/seo": "2.0.0-rc.23",
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@pinia/nuxt": "^0.6.1",
+    "@vite-pwa/nuxt": "^0.10.6",
+    "@vueuse/nuxt": "^11.2.0",
+    "nuxt": "^3.13.2",
+    "vue": "latest",
+    "vue-router": "latest",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.9",
+    "@tauri-apps/cli": "^2.0.4",
+    "cross-env": "^7.0.3",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "untun": "^0.1.3"
+  }
+}
