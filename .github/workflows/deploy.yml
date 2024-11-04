@@ -13,7 +13,7 @@ env:
   REGISTRY: ${{ vars.REGISTRY }}
   USERNAME: ${{ vars.USERNAME }}
   PORT: ${{ vars.PORT }}
-  NODE_ENV: ${{ vars.NODE_ENV }}
+  NODE_ENV: production
   NITRO_PRESET: ${{ vars.NITRO_PRESET }}
 
 jobs:
@@ -80,8 +80,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            BUILDTIME=${{ steps.metadata.outputs.buildtime }}
             VERSION=${{ steps.metadata.outputs.version }}
+            BUILD_TIME=${{ steps.metadata.outputs.buildtime }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 

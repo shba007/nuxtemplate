@@ -12,9 +12,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Corepack for pnpm
+        run: corepack enable
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -37,7 +39,26 @@ jobs:
       - name: Bulid Artifacts
         run: pnpm build
 
-      - name: Create Release Pull Request
-        uses: changesets/action@v1
+      - name: Create Version and Changelog
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+          npx changelogen@latest --release --push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: release new version'
+          title: 'chore: release new version'
+          body: |
+            This PR contains:
+            - Version Bump
+            - Updated CHANGELOG.md
+            - Formatted and linted code
+          branch: release/next-version
+          base: develop
+          labels: release

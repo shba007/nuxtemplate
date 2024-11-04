@@ -61,6 +61,14 @@ pnpx giget@latest gh:shba007/nuxtemplate
 
 - asset_name [deploy.yml](.github/workflows/deploy.yml) in line 271
 
+### In github registry add Repo or Org Vars following
+
+- Vars
+  - REGISTRY
+  - USERNAME
+  - PORT
+  - NITRO_PRESET
+
 ## Change the Icons and Screenshots
 
 ## Development Server

@@ -1,0 +1,23 @@
+name: Nuxt Release
+run-name: ${{ github.ref_name }}
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref_name }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create GitHub Release
+        run: npx changelogen@latest gh release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

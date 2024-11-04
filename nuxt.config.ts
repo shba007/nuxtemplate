@@ -63,6 +63,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     app: {
       version: '',
+      buildTime: '',
     },
     public: {
       apiBaseUrl: '',

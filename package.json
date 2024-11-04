@@ -28,7 +28,7 @@
     "preview": "nuxt preview",
     "clean": "nuxt cleanup",
     "start": "node .output/server/index.mjs",
-    "docker:build": "docker build --build-arg VERSION_TAG=dev -t nuxtemplate:dev .",
+    "docker:build": "docker build --build-arg VERSION=dev BUILD_TIME=now -t nuxtemplate:dev .",
     "docker:start": "docker run --detach --name nuxtemplate-dev --env-file .env.prod -p 1000:3000 nuxtemplate:dev",
     "tunnel": "untun tunnel --port 3000 http://localhost:3000",
     "tauri": "tauri",
