@@ -1,5 +1,4 @@
 name: Nuxt Release
-run-name: ${{ github.ref_name }}
 
 on:
   push:
@@ -17,7 +16,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Corepack for pnpm
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
+
       - name: Create GitHub Release
-        run: npx changelogen@latest gh release
+        run: pnpx changelogen@latest gh release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
