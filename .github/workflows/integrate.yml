@@ -44,7 +44,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
-          npx changelogen@latest --release --push
+          pnpx changelogen@latest --release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
