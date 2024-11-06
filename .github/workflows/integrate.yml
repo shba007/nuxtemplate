@@ -59,6 +59,6 @@ jobs:
             - Version Bump
             - Updated CHANGELOG.md
             - Formatted and linted code
-          branch: release/next-version
+          branch: main
           base: develop
           labels: release
