@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.1.5
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.1...v0.1.5)
+
+### 🏡 Chore
+
+- Nuxt migrated from 3.13 -> 3.14 ([8af8578](https://github.com/shba007/nuxtemplate/commit/8af8578))
+- Nuxt migrated from 3.13 -> 3.14 ([fd006ce](https://github.com/shba007/nuxtemplate/commit/fd006ce))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](http://github.com/shba007))
+
 ## v0.1.4
 
 
