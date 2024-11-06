@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -41,9 +45,6 @@ jobs:
 
       - name: Create Version and Changelog
         run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-
           pnpx changelogen@latest --release --no-tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,13 +53,14 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: release new version'
-          title: 'chore: release new version'
+          labels: release
+          branch: release/version
+          delete-branch: true
+          title: 'New Version Release'
+          commit-message: 'chore: new version release'
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           body: |
             This PR contains:
             - Version Bump
             - Updated CHANGELOG.md
             - Formatted and linted code
-          branch: main
-          base: develop
-          labels: release
