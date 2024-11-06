@@ -41,13 +41,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
   ],
-  imports: {
-    dirs: ['../shared/types', '../shared/utils'],
-  },
   nitro: {
-    imports: {
-      dirs: ['./shared/types', './shared/utils'],
-    },
     compressPublicAssets: true,
     experimental: {
       openAPI: true,
