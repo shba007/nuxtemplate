@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.1.3
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.2...v0.1.3)
+
+### 🩹 Fixes
+
+- Ci release branch changed ([b4fa5c0](https://github.com/shba007/nuxtemplate/commit/b4fa5c0))
+- Sync all versions ([0471243](https://github.com/shba007/nuxtemplate/commit/0471243))
+
+### 🏡 Chore
+
+- **release:** V0.1.1 ([f3626bb](https://github.com/shba007/nuxtemplate/commit/f3626bb))
+- **release:** V0.1.2 ([303c943](https://github.com/shba007/nuxtemplate/commit/303c943))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](http://github.com/shba007))
+
 ## v0.1.2
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.2...v0.1.2)
