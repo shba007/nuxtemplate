@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.3
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.3...v0.1.3)
+
+### 🩹 Fixes
+
+- Sync all versions ([0471243](https://github.com/shba007/nuxtemplate/commit/0471243))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](http://github.com/shba007))
+
 ## v0.1.2
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.2...v0.1.2)
