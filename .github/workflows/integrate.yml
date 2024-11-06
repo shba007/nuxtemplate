@@ -35,12 +35,12 @@ jobs:
       # run: pnpm test
 
       # - name: Lint Code
-      #   run: pnpm linit
+      #   run: pnpm lint
 
       # - name: Format Code
       #   run: pnpm format
 
-      - name: Bulid Artifacts
+      - name: Build Artifacts
         run: pnpm build
 
       - name: Create Version and Changelog
@@ -55,6 +55,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           labels: release
           branch: release/version
+          base: main
           delete-branch: true
           title: 'New Version Release'
           commit-message: 'chore: new version release'
@@ -64,3 +65,4 @@ jobs:
             - Version Bump
             - Updated CHANGELOG.md
             - Formatted and linted code
+          # Prevents the workflow from running again on the `release/version` branch
