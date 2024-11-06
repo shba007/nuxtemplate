@@ -26,6 +26,6 @@ jobs:
           cache: 'pnpm'
 
       - name: Create GitHub Release
-        run: pnpx changelogen@latest gh release
+        run: pnpx changelogen@latest gh release all
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
