@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/shba007/nuxtemplate/compare/v0.1.4...v0.1.5) (2024-11-07)
+
+
+### Bug Fixes
+
+* github actions workflow upgraded ([3db061a](https://github.com/shba007/nuxtemplate/commit/3db061ae5205799bc6b807df81b2ad4538053540))
+
 ## v0.1.4
 
 
@@ -74,4 +81,3 @@
 ### ❤️ Contributors
 
 - Shirsendu Bairagi ([@shba007](http://github.com/shba007))
-
