@@ -20,7 +20,7 @@
   "packageManager": "pnpm@9.12.3",
   "scripts": {
     "postinstall": "nuxt prepare",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --tunnel",
     "lint": "eslint . --fix",
     "format": "prettier .  --write",
     "build": "nuxt build",
@@ -30,7 +30,7 @@
     "start": "node .output/server/index.mjs",
     "docker:build": "docker build --build-arg VERSION=dev BUILD_TIME=now -t nuxtemplate:dev .",
     "docker:start": "docker run --detach --name nuxtemplate-dev --env-file .env.prod -p 1000:3000 nuxtemplate:dev",
-    "tunnel": "untun tunnel --port 3000 http://localhost:3000",
+    "tunnel": "untun tunnel --port 1000 http://localhost:1000",
     "tauri": "tauri",
     "tauri:dev": "cross-env PLATFORM_ENV=native tauri dev",
     "tauri:build": "cross-env PLATFORM_ENV=native tauri build",
@@ -51,7 +51,7 @@
     "@pinia/nuxt": "^0.7.0",
     "@vite-pwa/nuxt": "^0.10.6",
     "@vueuse/nuxt": "^11.2.0",
-    "nuxt": "^3.14.0",
+    "nuxt": "^3.14.159",
     "vue": "latest",
     "vue-router": "latest",
     "zod": "^3.23.8"
