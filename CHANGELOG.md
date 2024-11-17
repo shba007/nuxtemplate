@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.6](https://github.com/shba007/nuxtemplate/compare/v0.1.5...v0.1.6) (2024-11-17)
+
+
+### Bug Fixes
+
+* auto tag release removed ([14b67a2](https://github.com/shba007/nuxtemplate/commit/14b67a261fedbaf4370794ee46d835dc87ddca99))
+* ci release branch changed ([b4fa5c0](https://github.com/shba007/nuxtemplate/commit/b4fa5c0277e0138bc039f139174b4812da8a3217))
+* **ci/cd:** integrate workflow push tag removed ([6396ee7](https://github.com/shba007/nuxtemplate/commit/6396ee734fc5962ec0b1c5143f31871922949a66))
+* github actions workflow upgraded ([3db061a](https://github.com/shba007/nuxtemplate/commit/3db061ae5205799bc6b807df81b2ad4538053540))
+* sync all versions ([0471243](https://github.com/shba007/nuxtemplate/commit/047124326efb99a52b38cbb38d5501117e2a1671))
+
 ## [0.1.5](https://github.com/shba007/nuxtemplate/compare/v0.1.4...v0.1.5) (2024-11-07)
 
 
