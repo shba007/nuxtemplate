@@ -6,7 +6,9 @@ on:
     tags:
       - 'v*.*.*'
 
-concurrency: ${{ github.workflow }}-${{ github.ref_name }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   REPO: ${{ github.repository }}
@@ -148,6 +150,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install OS Dependencies (Ubuntu only)
         if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
@@ -161,8 +165,8 @@ jobs:
           # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Corepack for pnpm
+        run: corepack enable
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -171,7 +175,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Bulid and Upload Artifact
         uses: tauri-apps/tauri-action@v0
@@ -212,6 +216,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install OS Dependencies
         run: |
@@ -245,8 +251,8 @@ jobs:
         with:
           targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Corepack for pnpm
+        run: corepack enable
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -255,7 +261,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Bulid & Upload Artifact
         run: |

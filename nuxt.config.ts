@@ -32,20 +32,19 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/scripts',
-    '@nuxt/test-utils',
+    '@nuxt/test-utils/module',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@prisma/nuxt',
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
+    'nuxt-auth-utils',
   ],
   nitro: {
     compressPublicAssets: true,
-    experimental: {
-      openAPI: true,
-    },
   },
   routeRules: {
     '/': { isr: 3600 },
