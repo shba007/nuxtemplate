@@ -1,5 +1,16 @@
 # Nuxt Template
 
+# Todo
+
+- [x] Add Authentication and Authorization
+- [x] Add Database
+- [ ] Add Testing
+- [x] Add Git Precommit Hooks
+  - Lint
+  - Format
+  - Gitleaks
+- [ ] Modify CI/CD Pipeline
+
 ## Clone Template
 
 Clone the template
