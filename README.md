@@ -9,7 +9,7 @@
   - Lint
   - Format
   - Gitleaks
-- [ ] Modify CI/CD Pipeline
+- [x] Modify CI/CD Pipeline
 
 ## Clone Template
 
