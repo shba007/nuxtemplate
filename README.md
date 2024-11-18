@@ -1,6 +1,6 @@
 # Nuxt Template
 
-# Todo -
+# Todo
 
 - [x] Add Authentication and Authorization
 - [x] Add Database
