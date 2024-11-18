@@ -1,0 +1,35 @@
+name: Nuxt Release
+
+on:
+  pull_request:
+    branches:
+      - release-please--branches--main--components--nuxtemplate
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Merge into Develop Branch
+        run: |
+          git checkout develop
+          git merge --no-ff release-please--branches--main--components--nuxtemplate
+          git push origin develop
+
+      - name: Merge into Main Branch
+        run: |
+          git checkout main
+          git merge --no-ff release-please--branches--main--components--nuxtemplate
+          git push origin main
+
+      - name: Create Release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          skip-github-pull-request: true
