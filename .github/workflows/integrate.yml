@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-    if: ${{ !contains(github.event.ref, 'release') }}
     runs-on: ubuntu-latest
 
     permissions:
@@ -50,25 +49,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
           skip-github-release: true
-
-  release:
-    if: ${{ contains(github.event.ref, 'release') }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Merge into Main Branch
-        run: |
-          git checkout main
-          git merge develop
-
-      - name: Create Release
-        uses: googleapis/release-please-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-          skip-github-pull-request: true
