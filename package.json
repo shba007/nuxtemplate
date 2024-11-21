@@ -17,7 +17,7 @@
     "node": "^18.0.0 || ^20.0.0 || ^22.0.0",
     "pnpm": "^9.12.0"
   },
-  "packageManager": "pnpm@9.13.2",
+  "packageManager": "pnpm@9.14.2",
   "scripts": {
     "postinstall": "nuxt prepare",
     "dev": "nuxt dev --tunnel",
@@ -42,9 +42,9 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@nuxt/eslint": "^0.7.0",
+    "@nuxt/eslint": "^0.7.1",
     "@nuxt/fonts": "^0.10.2",
-    "@nuxt/icon": "^1.7.5",
+    "@nuxt/icon": "^1.8.2",
     "@nuxt/image": "^1.8.1",
     "@nuxt/scripts": "^0.9.5",
     "@nuxt/test-utils": "^3.14.4",
@@ -53,7 +53,7 @@
     "@nuxtjs/seo": "2.0.0-rc.23",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@pinia/nuxt": "^0.7.0",
-    "@prisma/nuxt": "^0.0.35",
+    "@prisma/nuxt": "^0.1.0",
     "@vite-pwa/nuxt": "^0.10.6",
     "@vueuse/nuxt": "^11.2.0",
     "nuxt": "^3.14.159",
@@ -72,9 +72,9 @@
     "happy-dom": "^15.11.6",
     "husky": "^9.1.7",
     "opencommit": "^3.2.2",
-    "playwright-core": "^1.48.2",
+    "playwright-core": "^1.49.0",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "prisma": "5.22.0",
     "tailwindcss": "^3.4.15",
     "untun": "^0.1.3",
