@@ -11,6 +11,11 @@
   - Gitleaks
 - [x] Modify CI/CD Pipeline
 
+## External Dependencies
+
+- gitleaks
+- dotenvx
+
 ## Clone Template
 
 Clone the template
