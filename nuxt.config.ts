@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     'nuxt-auth-utils',
+    '@nuxt/content',
   ],
   nitro: {
     compressPublicAssets: true,
@@ -93,6 +94,9 @@ export default defineNuxtConfig({
   site: {
     url: 'https://nuxtemplate.com',
     name: 'NuxTemplate',
+  },
+  prisma: {
+    autoSetupPrisma: true,
   },
   pwa: {
     scope: '/',
