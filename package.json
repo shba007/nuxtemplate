@@ -19,7 +19,6 @@
   },
   "packageManager": "pnpm@9.14.4",
   "scripts": {
-    "prepare": "husky",
     "postinstall": "nuxt prepare",
     "dev": "nuxt dev --tunnel",
     "detect": "gitleaks git --verbose",
