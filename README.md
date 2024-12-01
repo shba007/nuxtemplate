@@ -1,6 +1,6 @@
 # Nuxt Template
 
-# Todo - 
+# Todo
 
 - [x] Add Authentication and Authorization
 - [x] Add Database
@@ -10,6 +10,11 @@
   - Format
   - Gitleaks
 - [x] Modify CI/CD Pipeline
+
+## External Dependencies
+
+- gitleaks
+- dotenvx
 
 ## Clone Template
 

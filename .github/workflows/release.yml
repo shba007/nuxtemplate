@@ -3,11 +3,17 @@ name: Nuxt Release
 on:
   push:
     branches:
-      - release-please--branches--main--components--nuxtemplate
+      - main
 
 jobs:
   release:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
 
     steps:
       - name: Checkout Repo
@@ -15,21 +21,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Merge into Develop Branch
-        run: |
-          git checkout develop
-          git merge --no-ff release-please--branches--main--components--nuxtemplate
-          git push origin develop
+      - name: Setup Corepack for pnpm
+        run: corepack enable
 
-      - name: Merge into Main Branch
-        run: |
-          git checkout main
-          git merge --no-ff release-please--branches--main--components--nuxtemplate
-          git push origin main
-
-      - name: Create Release
-        uses: googleapis/release-please-action@v4
+      - name: Setup Node.js with Corepack
+        uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-          skip-github-pull-request: true
+          node-version: lts/*
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      # - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+      #   run: pnpm audit signatures
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpx semantic-release
