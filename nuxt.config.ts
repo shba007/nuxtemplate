@@ -2,18 +2,19 @@ const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
     ? {
         ssr: false,
+        ignore: ['**/src-tauri/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
         devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
         vite: {
           clearScreen: false,
           envPrefix: ['VITE_', 'TAURI_'],
           server: {
             strictPort: true,
+            watch: {
+              ignored: ['**/src-tauri/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/public/**', '**/.output/**'],
+            },
           },
         },
         nitro: {
-          imports: {
-            dirs: ['./shared/types', './shared/utils'],
-          },
           compressPublicAssets: true,
         },
       }
@@ -21,13 +22,12 @@ const nativeConfig =
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
+  compatibilityDate: '2024-07-04',
   future: {
     compatibilityVersion: 4,
   },
   devtools: { enabled: true },
   modules: [
-    '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-    // '@prisma/nuxt',
+    '@prisma/nuxt',
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     'nuxt-auth-utils',
@@ -76,7 +76,16 @@ export default defineNuxtConfig({
       },
     },
   },
-  icon: {},
+  icon: {
+    componentName: 'NuxtIcon',
+    provider: 'server',
+    customCollections: [
+      {
+        prefix: 'local',
+        dir: './app/assets/icons',
+      },
+    ],
+  },
   image: {},
   scripts: {
     registry: {

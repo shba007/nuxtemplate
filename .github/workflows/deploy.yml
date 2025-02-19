@@ -14,14 +14,9 @@ env:
   REPO: ${{ github.repository }}
   REGISTRY: ${{ vars.REGISTRY }}
   USERNAME: ${{ vars.USERNAME }}
-  PORT: ${{ vars.PORT }}
-  NODE_ENV: production
-  NITRO_PRESET: ${{ vars.NITRO_PRESET }}
-  NUXT_PUBLIC_API_BASE_URL: ${{ vars.NUXT_PUBLIC_API_BASE_URL }}
-  NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID: ${{ vars.NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID }}
 
 jobs:
-  build_web:
+  build-web:
     runs-on: ubuntu-latest
 
     permissions:
@@ -93,8 +88,8 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: false
 
-  deploy_web:
-    needs: build_web
+  deploy-web:
+    needs: build-web
     runs-on: ubuntu-latest
 
     steps:
@@ -105,24 +100,10 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            # Pull new image
-            docker pull ${{ needs.build_web.outputs.image_name }}
-
-            # Stop the existing container
-            docker stop ${{ needs.build_web.outputs.image_title }} || true
-            docker rm ${{ needs.build_web.outputs.image_title }} || true
-
-            # Create and start new container
-            docker run --detach \
-              --name ${{ needs.build_web.outputs.image_title }} \
-              --restart unless-stopped \
-              --mount type=bind,source=$(pwd)/${{ needs.build_web.outputs.image_title }}/static,target=/app/static,readonly \
-              --env-file ~/${{ needs.build_web.outputs.image_title }}/.env.prod \
-              -p ${{ env.PORT }}:3000 \
-              ${{ needs.build_web.outputs.image_name }}
-
-            # Clean up unused images
-            docker image prune -f
+            cd ~/${{ env.REPO }}
+            curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.yml
+            docker compose -f docker-compose.yml pull
+            docker compose -f docker-compose.yml up -d
 
   build_desktop:
     permissions:
@@ -194,7 +175,7 @@ jobs:
   #   needs: build_desktop
   #   runs-on: ubuntu-latest
 
-  build_mobile:
+  build-mobile:
     permissions:
       contents: write
 
@@ -272,5 +253,5 @@ jobs:
           gh release upload ${{ github.ref }} native/gen/android/app/build/outputs/apk/universal/release/Nuxtemplate_${{ github.ref }}_arm64.apk
 
   # deploy_mobile:
-  #   needs: build_mobile
+  #   needs: build-mobile
   #   runs-on: ubuntu-latest

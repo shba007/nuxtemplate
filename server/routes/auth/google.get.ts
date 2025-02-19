@@ -1,6 +1,6 @@
 export default defineOAuthGoogleEventHandler({
   config: {},
-  async onSuccess(event, { user, tokens }) {
+  async onSuccess(event, { user }) {
     await setUserSession(event, { user, loggedInAt: Date.now() })
     return sendRedirect(event, '/')
   },

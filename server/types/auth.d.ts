@@ -1,5 +1,5 @@
 declare module '#auth-utils' {
-  interface User {
+  /* interface User {
     // Add your own fields
   }
 
@@ -9,7 +9,7 @@ declare module '#auth-utils' {
 
   interface SecureSessionData {
     // Add your own fields
-  }
+  } */
 }
 
 export {}

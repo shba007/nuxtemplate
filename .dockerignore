@@ -1,6 +1,7 @@
 .vs
 .vscode
 
+# Git/Github
 .changeset
 .git
 .github
@@ -19,18 +20,19 @@ node_modules
 logs
 *.log
 
+# Testing
+coverage
+
 # Misc
 .DS_Store
 .fleet
 .idea
 
-# Local env files
-.env
-.env.*
+# Env files
+.env*
 
 # Tauri files
-native/target/
-native/gen/schemas
+native
 
 # Docker files
 .dockerignore
