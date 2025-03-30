@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-    '@prisma/nuxt',
+    // '@prisma/nuxt',
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     'nuxt-auth-utils',
