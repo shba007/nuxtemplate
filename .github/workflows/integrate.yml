@@ -42,3 +42,6 @@ jobs:
 
       - name: Format Code
         run: pnpm format
+
+      - name: Create Release PR
+        run: pnpx auto shipit
