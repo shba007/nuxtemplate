@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.4.0
+## v1.5.0
 
-[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.0.0...v1.4.0)
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.0.0...v1.5.0)
 
 ### 🚀 Enhancements
 
@@ -23,6 +23,8 @@
 - Comment out version bump step in release workflow ([aaff3db](https://github.com/shba007/nuxtemplate/commit/aaff3db))
 - Update release workflow to trigger on chore(release) and merge develop into main ([367d2ee](https://github.com/shba007/nuxtemplate/commit/367d2ee))
 - Enhance workflows to skip CI on merge pull requests ([917db00](https://github.com/shba007/nuxtemplate/commit/917db00))
+- Update CI workflow to skip builds on merge branch commits ([9764d60](https://github.com/shba007/nuxtemplate/commit/9764d60))
+- Update CI workflow condition to use startsWith for merge messages ([bbfe21a](https://github.com/shba007/nuxtemplate/commit/bbfe21a))
 
 ### 💅 Refactors
 
@@ -43,6 +45,7 @@
 - **release:** Update version ([315f6a3](https://github.com/shba007/nuxtemplate/commit/315f6a3))
 - **release:** Update version ([aa93060](https://github.com/shba007/nuxtemplate/commit/aa93060))
 - **release:** Update version ([cbb0b11](https://github.com/shba007/nuxtemplate/commit/cbb0b11))
+- **release:** Update version ([9e5be4d](https://github.com/shba007/nuxtemplate/commit/9e5be4d))
 
 ### 🤖 CI
 
