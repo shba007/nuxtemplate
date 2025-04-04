@@ -9,7 +9,7 @@
   - Lint
   - Format
   - Gitleaks
-- [x] Modify CI/CD Pipeline
+- [x] Add Auto Release
 
 ## External Dependencies
 

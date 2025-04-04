@@ -1,5 +1,11 @@
 name: Nuxt CI
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
 on:
   push:
     branches:
@@ -7,11 +13,8 @@ on:
 
 jobs:
   build:
+    if: "!contains(github.event.head_commit.message, '[skip ci]') && !startsWith(github.event.head_commit.message, 'Merge pull request') && !startsWith(github.event.head_commit.message, 'Merge branch')"
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout Repo
@@ -20,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup pnpm
-        run: npm i -g pnpm
+        run: npm install -g pnpm
 
       - name: Setup Node.js with pnpm
         uses: actions/setup-node@v4
@@ -42,3 +45,25 @@ jobs:
 
       - name: Format Code
         run: pnpm format
+
+      - name: AutoFix Code
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: apply code fixes [skip ci]'
+
+      - name: Bump Version
+        run: |
+          rm -f CHANGELOG.md
+          pnpx changelogen@latest --bump
+          echo "CHANGELOG_CONTENT<<EOF" >> $GITHUB_ENV && cat CHANGELOG.md >> $GITHUB_ENV && echo "EOF" >> $GITHUB_ENV
+          # git reset --hard
+
+      - name: Create or Update Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'chore(release): update version'
+          title: 'chore(release): update version'
+          body: ${{ env.CHANGELOG_CONTENT }}
+          branch: 'release/update-version'
+          base: 'develop'
+          delete-branch: true

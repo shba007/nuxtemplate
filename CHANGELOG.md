@@ -1,85 +1,56 @@
 # Changelog
 
-## [0.6.0](https://github.com/shba007/nuxtemplate/compare/v0.5.0...v0.6.0) (2024-11-18)
+## v1.8.0
 
-### Features
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.5.0...v1.8.0)
 
-- ci/cd pipeline triggered ([b1cd27e](https://github.com/shba007/nuxtemplate/commit/b1cd27e4c5b2fb4eddf7cfe93787be98392a3492))
-- prisma and nuxt auth added, git precommit hooks added ([801520e](https://github.com/shba007/nuxtemplate/commit/801520e227850b2678ac056a67046ded61ca640f))
-- prisma and nuxt auth added, git precommit hooks added ([10af6b6](https://github.com/shba007/nuxtemplate/commit/10af6b6eec21ea1b157b4439fa777a44223e9ea8))
+### 🚀 Enhancements
 
-### Bug Fixes
+- Update README to reflect addition of auto release feature ([ad25606](https://github.com/shba007/nuxtemplate/commit/ad25606))
 
-- auto release trigger ([4706afd](https://github.com/shba007/nuxtemplate/commit/4706afd1f673475788f77c7ac55ada7a6312abf6))
-- auto tag release removed ([14b67a2](https://github.com/shba007/nuxtemplate/commit/14b67a261fedbaf4370794ee46d835dc87ddca99))
-- ci release branch changed ([b4fa5c0](https://github.com/shba007/nuxtemplate/commit/b4fa5c0277e0138bc039f139174b4812da8a3217))
-- ci/cd updated ([de12dd8](https://github.com/shba007/nuxtemplate/commit/de12dd8e8f5ae38c6c34168d26895bc01ff66c6a))
-- **ci/cd:** integrate workflow push tag removed ([6396ee7](https://github.com/shba007/nuxtemplate/commit/6396ee734fc5962ec0b1c5143f31871922949a66))
-- docs ([554d869](https://github.com/shba007/nuxtemplate/commit/554d8699e98db9f32453c2f88fdb1a51e091e581))
-- github action file ([9ad2123](https://github.com/shba007/nuxtemplate/commit/9ad21233cec68aee320ee7981eccda1101f7feaa))
-- github action file fixed ([cf12927](https://github.com/shba007/nuxtemplate/commit/cf1292762bdc928b24b5a5393ec4455306f25587))
-- github actions workflow upgraded ([3db061a](https://github.com/shba007/nuxtemplate/commit/3db061ae5205799bc6b807df81b2ad4538053540))
-- release action added ([42a7bbe](https://github.com/shba007/nuxtemplate/commit/42a7bbe4774cb669f391f70d83ef516961485acb))
-- release on push ([74e89c8](https://github.com/shba007/nuxtemplate/commit/74e89c83390e66d183458125178fd70946268f0f))
-- sync all versions ([0471243](https://github.com/shba007/nuxtemplate/commit/047124326efb99a52b38cbb38d5501117e2a1671))
+### 🩹 Fixes
 
-## [0.5.0](https://github.com/shba007/nuxtemplate/compare/v0.4.0...v0.5.0) (2024-11-18)
+- Update release configuration to include main branch and prerelease for develop ([2716049](https://github.com/shba007/nuxtemplate/commit/2716049))
+- Correct syntax for skip CI condition in GitHub Actions workflow ([76e6644](https://github.com/shba007/nuxtemplate/commit/76e6644))
+- Update output formatting in integrate.yml for version bump ([cc4f838](https://github.com/shba007/nuxtemplate/commit/cc4f838))
+- Streamline version bump process in integrate.yml and update PR body to include CHANGELOG ([2e42445](https://github.com/shba007/nuxtemplate/commit/2e42445))
+- Read CHANGELOG.md content into environment variable for PR body ([bba817c](https://github.com/shba007/nuxtemplate/commit/bba817c))
+- Add pnpm setup to release workflow for improved package management ([99056d3](https://github.com/shba007/nuxtemplate/commit/99056d3))
+- Remove existing CHANGELOG.md before bumping version ([e7a6614](https://github.com/shba007/nuxtemplate/commit/e7a6614))
+- Streamline CHANGELOG handling in integrate workflow ([3c6f285](https://github.com/shba007/nuxtemplate/commit/3c6f285))
+- Update dependencies and package manager version in package.json ([fd808a8](https://github.com/shba007/nuxtemplate/commit/fd808a8))
+- Comment out git reset command in integrate workflow ([2c254bc](https://github.com/shba007/nuxtemplate/commit/2c254bc))
+- Comment out version bump step in release workflow ([aaff3db](https://github.com/shba007/nuxtemplate/commit/aaff3db))
+- Update release workflow to trigger on chore(release) and merge develop into main ([367d2ee](https://github.com/shba007/nuxtemplate/commit/367d2ee))
+- Enhance workflows to skip CI on merge pull requests ([917db00](https://github.com/shba007/nuxtemplate/commit/917db00))
+- Update CI workflow to skip builds on merge branch commits ([9764d60](https://github.com/shba007/nuxtemplate/commit/9764d60))
+- Update CI workflow condition to use startsWith for merge messages ([bbfe21a](https://github.com/shba007/nuxtemplate/commit/bbfe21a))
+- Update release workflow to checkout develop branch before creating release notes ([c2dec4c](https://github.com/shba007/nuxtemplate/commit/c2dec4c))
+- Update release workflow to handle no changes during merge from develop to main ([1f9b450](https://github.com/shba007/nuxtemplate/commit/1f9b450))
+- Configure git user for automated merge in release workflow ([71cc114](https://github.com/shba007/nuxtemplate/commit/71cc114))
 
-### Features
+### 💅 Refactors
 
-- ci/cd pipeline triggered ([b1cd27e](https://github.com/shba007/nuxtemplate/commit/b1cd27e4c5b2fb4eddf7cfe93787be98392a3492))
-- prisma and nuxt auth added, git precommit hooks added ([801520e](https://github.com/shba007/nuxtemplate/commit/801520e227850b2678ac056a67046ded61ca640f))
-- prisma and nuxt auth added, git precommit hooks added ([10af6b6](https://github.com/shba007/nuxtemplate/commit/10af6b6eec21ea1b157b4439fa777a44223e9ea8))
+- Remove semantic release configuration and related dependencies ([0a339fe](https://github.com/shba007/nuxtemplate/commit/0a339fe))
 
-### Bug Fixes
+### 🏡 Chore
 
-- auto tag release removed ([14b67a2](https://github.com/shba007/nuxtemplate/commit/14b67a261fedbaf4370794ee46d835dc87ddca99))
-- ci release branch changed ([b4fa5c0](https://github.com/shba007/nuxtemplate/commit/b4fa5c0277e0138bc039f139174b4812da8a3217))
-- ci/cd updated ([de12dd8](https://github.com/shba007/nuxtemplate/commit/de12dd8e8f5ae38c6c34168d26895bc01ff66c6a))
-- **ci/cd:** integrate workflow push tag removed ([6396ee7](https://github.com/shba007/nuxtemplate/commit/6396ee734fc5962ec0b1c5143f31871922949a66))
-- docs ([554d869](https://github.com/shba007/nuxtemplate/commit/554d8699e98db9f32453c2f88fdb1a51e091e581))
-- github action file ([9ad2123](https://github.com/shba007/nuxtemplate/commit/9ad21233cec68aee320ee7981eccda1101f7feaa))
-- github action file fixed ([cf12927](https://github.com/shba007/nuxtemplate/commit/cf1292762bdc928b24b5a5393ec4455306f25587))
-- github actions workflow upgraded ([3db061a](https://github.com/shba007/nuxtemplate/commit/3db061ae5205799bc6b807df81b2ad4538053540))
-- release action added ([42a7bbe](https://github.com/shba007/nuxtemplate/commit/42a7bbe4774cb669f391f70d83ef516961485acb))
-- sync all versions ([0471243](https://github.com/shba007/nuxtemplate/commit/047124326efb99a52b38cbb38d5501117e2a1671))
+- Update release process by removing semantic-release to auto ([4944681](https://github.com/shba007/nuxtemplate/commit/4944681))
+- Add GitHub token to workflow environment variables ([a3cf1ba](https://github.com/shba007/nuxtemplate/commit/a3cf1ba))
+- Update GitHub Actions workflow to use pnpm for release and add GH_TOKEN environment variable ([a0d365e](https://github.com/shba007/nuxtemplate/commit/a0d365e))
+- Update release command in GitHub Actions workflow to use 'auto pr' ([60f99dd](https://github.com/shba007/nuxtemplate/commit/60f99dd))
+- Add semantic-release configuration and update GitHub Actions workflow ([a1ecd66](https://github.com/shba007/nuxtemplate/commit/a1ecd66))
+- Update GitHub Actions workflows to streamline permissions and add release automation ([e3835af](https://github.com/shba007/nuxtemplate/commit/e3835af))
+- Remove CHANGELOG.md file ([96149cc](https://github.com/shba007/nuxtemplate/commit/96149cc))
+- **release:** Update version ([315f6a3](https://github.com/shba007/nuxtemplate/commit/315f6a3))
+- **release:** Update version ([aa93060](https://github.com/shba007/nuxtemplate/commit/aa93060))
+- **release:** Update version ([cbb0b11](https://github.com/shba007/nuxtemplate/commit/cbb0b11))
+- **release:** Update version ([9e5be4d](https://github.com/shba007/nuxtemplate/commit/9e5be4d))
+- **release:** Update version ([e47568b](https://github.com/shba007/nuxtemplate/commit/e47568b))
+- **release:** Update version ([a6183c7](https://github.com/shba007/nuxtemplate/commit/a6183c7))
+- **release:** Update version ([cd18834](https://github.com/shba007/nuxtemplate/commit/cd18834))
 
-## [0.4.0](https://github.com/shba007/nuxtemplate/compare/v0.3.0...v0.4.0) (2024-11-18)
+### ❤️ Contributors
 
-### Features
-
-- prisma and nuxt auth added, git precommit hooks added ([801520e](https://github.com/shba007/nuxtemplate/commit/801520e227850b2678ac056a67046ded61ca640f))
-- prisma and nuxt auth added, git precommit hooks added ([10af6b6](https://github.com/shba007/nuxtemplate/commit/10af6b6eec21ea1b157b4439fa777a44223e9ea8))
-
-### Bug Fixes
-
-- auto tag release removed ([14b67a2](https://github.com/shba007/nuxtemplate/commit/14b67a261fedbaf4370794ee46d835dc87ddca99))
-- ci release branch changed ([b4fa5c0](https://github.com/shba007/nuxtemplate/commit/b4fa5c0277e0138bc039f139174b4812da8a3217))
-- **ci/cd:** integrate workflow push tag removed ([6396ee7](https://github.com/shba007/nuxtemplate/commit/6396ee734fc5962ec0b1c5143f31871922949a66))
-- github action file ([9ad2123](https://github.com/shba007/nuxtemplate/commit/9ad21233cec68aee320ee7981eccda1101f7feaa))
-- github action file fixed ([cf12927](https://github.com/shba007/nuxtemplate/commit/cf1292762bdc928b24b5a5393ec4455306f25587))
-- github actions workflow upgraded ([3db061a](https://github.com/shba007/nuxtemplate/commit/3db061ae5205799bc6b807df81b2ad4538053540))
-- sync all versions ([0471243](https://github.com/shba007/nuxtemplate/commit/047124326efb99a52b38cbb38d5501117e2a1671))
-
-## [0.3.0](https://github.com/shba007/nuxtemplate/compare/v0.2.0...v0.3.0) (2024-11-18)
-
-### Features
-
-- prisma and nuxt auth added, git precommit hooks added ([801520e](https://github.com/shba007/nuxtemplate/commit/801520e227850b2678ac056a67046ded61ca640f))
-- prisma and nuxt auth added, git precommit hooks added ([10af6b6](https://github.com/shba007/nuxtemplate/commit/10af6b6eec21ea1b157b4439fa777a44223e9ea8))
-
-### Bug Fixes
-
-- auto tag release removed ([14b67a2](https://github.com/shba007/nuxtemplate/commit/14b67a261fedbaf4370794ee46d835dc87ddca99))
-- ci release branch changed ([b4fa5c0](https://github.com/shba007/nuxtemplate/commit/b4fa5c0277e0138bc039f139174b4812da8a3217))
-- **ci/cd:** integrate workflow push tag removed ([6396ee7](https://github.com/shba007/nuxtemplate/commit/6396ee734fc5962ec0b1c5143f31871922949a66))
-- github action file ([9ad2123](https://github.com/shba007/nuxtemplate/commit/9ad21233cec68aee320ee7981eccda1101f7feaa))
-- github action file fixed ([cf12927](https://github.com/shba007/nuxtemplate/commit/cf1292762bdc928b24b5a5393ec4455306f25587))
-- github actions workflow upgraded ([3db061a](https://github.com/shba007/nuxtemplate/commit/3db061ae5205799bc6b807df81b2ad4538053540))
-- sync all versions ([0471243](https://github.com/shba007/nuxtemplate/commit/047124326efb99a52b38cbb38d5501117e2a1671))
-
-## [0.2.0](https://github.com/shba007/nuxtemplate/compare/v0.1.6...v0.2.0) (2024-11-17)
-
-### Features
-
-- prisma and nuxt auth added, git precommit hooks added ([801520e](https://github.com/shba007/nuxtemplate/commit/801520e227850b2678ac056a67046ded61ca640f))
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+- Shba007 ([@shba007](https://github.com/shba007))

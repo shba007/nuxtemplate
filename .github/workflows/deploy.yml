@@ -1,6 +1,12 @@
 name: Nuxt CD
 run-name: ${{ github.ref_name }}
 
+permissions:
+  contents: read
+  packages: write
+  attestations: write
+  id-token: write
+
 on:
   push:
     tags:
@@ -18,12 +24,6 @@ env:
 jobs:
   build-web:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
 
     outputs:
       image_name: ${{ steps.metadata.outputs.image_name }}
@@ -106,9 +106,6 @@ jobs:
             docker compose -f docker-compose.yml up -d
 
   build_desktop:
-    permissions:
-      contents: write
-
     env:
       PLATFORM_ENV: native
 
@@ -176,9 +173,6 @@ jobs:
   #   runs-on: ubuntu-latest
 
   build-mobile:
-    permissions:
-      contents: write
-
     env:
       PLATFORM_ENV: native
       ANDROID_HOME:
