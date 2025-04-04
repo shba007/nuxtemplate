@@ -43,6 +43,8 @@ jobs:
           git push origin main
 
       - name: Create Release Note
-        run: pnpx changelogen@latest gh release
+        run: |
+          git checkout develop
+          pnpx changelogen@latest gh release
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
