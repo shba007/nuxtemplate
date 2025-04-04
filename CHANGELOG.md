@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.2.0
+## v1.3.0
 
-[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.0.0...v1.2.0)
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.0.0...v1.3.0)
 
 ### 🚀 Enhancements
 
@@ -17,6 +17,11 @@
 - Read CHANGELOG.md content into environment variable for PR body ([bba817c](https://github.com/shba007/nuxtemplate/commit/bba817c))
 - Add pnpm setup to release workflow for improved package management ([99056d3](https://github.com/shba007/nuxtemplate/commit/99056d3))
 - Remove existing CHANGELOG.md before bumping version ([e7a6614](https://github.com/shba007/nuxtemplate/commit/e7a6614))
+- Streamline CHANGELOG handling in integrate workflow ([3c6f285](https://github.com/shba007/nuxtemplate/commit/3c6f285))
+- Update dependencies and package manager version in package.json ([fd808a8](https://github.com/shba007/nuxtemplate/commit/fd808a8))
+- Comment out git reset command in integrate workflow ([2c254bc](https://github.com/shba007/nuxtemplate/commit/2c254bc))
+- Comment out version bump step in release workflow ([aaff3db](https://github.com/shba007/nuxtemplate/commit/aaff3db))
+- Update release workflow to trigger on chore(release) and merge develop into main ([367d2ee](https://github.com/shba007/nuxtemplate/commit/367d2ee))
 
 ### 🏡 Chore
 
@@ -31,6 +36,7 @@
 - Update GitHub Actions workflows to streamline permissions and add release automation ([e3835af](https://github.com/shba007/nuxtemplate/commit/e3835af))
 - Remove CHANGELOG.md file ([96149cc](https://github.com/shba007/nuxtemplate/commit/96149cc))
 - **release:** Update version ([315f6a3](https://github.com/shba007/nuxtemplate/commit/315f6a3))
+- **release:** Update version ([aa93060](https://github.com/shba007/nuxtemplate/commit/aa93060))
 
 ### 🤖 CI
 
