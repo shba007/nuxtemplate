@@ -60,8 +60,8 @@ jobs:
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: 'chore(release): update version'
-          title: 'chore(release): update version'
+          commit-message: 'release: update version'
+          title: 'release: update version'
           body: ${{ env.CHANGELOG_CONTENT }}
           branch: 'release/update-version'
           base: 'develop'
