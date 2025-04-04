@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.5.0
+## v1.6.0
 
-[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.0.0...v1.5.0)
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.5.0...v1.6.0)
 
 ### 🚀 Enhancements
 
@@ -25,6 +25,7 @@
 - Enhance workflows to skip CI on merge pull requests ([917db00](https://github.com/shba007/nuxtemplate/commit/917db00))
 - Update CI workflow to skip builds on merge branch commits ([9764d60](https://github.com/shba007/nuxtemplate/commit/9764d60))
 - Update CI workflow condition to use startsWith for merge messages ([bbfe21a](https://github.com/shba007/nuxtemplate/commit/bbfe21a))
+- Update release workflow to checkout develop branch before creating release notes ([c2dec4c](https://github.com/shba007/nuxtemplate/commit/c2dec4c))
 
 ### 💅 Refactors
 
@@ -32,9 +33,6 @@
 
 ### 🏡 Chore
 
-- Add ESLint and Prettier configuration, update Docker setup, and enhance Nuxt configuration ([3eaf932](https://github.com/shba007/nuxtemplate/commit/3eaf932))
-- Remove unused image assets and add load testing script ([feb6131](https://github.com/shba007/nuxtemplate/commit/feb6131))
-- Update @prisma/nuxt version in package.json and adjust nuxt.config.ts formatting ([9d4e7ba](https://github.com/shba007/nuxtemplate/commit/9d4e7ba))
 - Update release process by removing semantic-release to auto ([4944681](https://github.com/shba007/nuxtemplate/commit/4944681))
 - Add GitHub token to workflow environment variables ([a3cf1ba](https://github.com/shba007/nuxtemplate/commit/a3cf1ba))
 - Update GitHub Actions workflow to use pnpm for release and add GH_TOKEN environment variable ([a0d365e](https://github.com/shba007/nuxtemplate/commit/a0d365e))
@@ -46,10 +44,7 @@
 - **release:** Update version ([aa93060](https://github.com/shba007/nuxtemplate/commit/aa93060))
 - **release:** Update version ([cbb0b11](https://github.com/shba007/nuxtemplate/commit/cbb0b11))
 - **release:** Update version ([9e5be4d](https://github.com/shba007/nuxtemplate/commit/9e5be4d))
-
-### 🤖 CI
-
-- **deploy:** Add environment variables for API base URL and Google Analytics ID ([a92ce16](https://github.com/shba007/nuxtemplate/commit/a92ce16))
+- **release:** Update version ([e47568b](https://github.com/shba007/nuxtemplate/commit/e47568b))
 
 ### ❤️ Contributors
 
