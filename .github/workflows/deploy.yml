@@ -8,9 +8,9 @@ permissions:
   id-token: write
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -22,7 +22,33 @@ env:
   USERNAME: ${{ vars.USERNAME }}
 
 jobs:
+  release:
+    if: contains(github.event.head_commit.message, 'chore(release)')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        run: npm install -g pnpm
+
+      - name: Setup Node.js with pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
+
+      - name: Create Release Note
+        run: |
+          pnpx changelogen@latest gh release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
   build-web:
+    needs: release
     runs-on: ubuntu-latest
 
     outputs:
@@ -105,7 +131,8 @@ jobs:
             docker compose -f docker-compose.yml pull
             docker compose -f docker-compose.yml up -d
 
-  build_desktop:
+  build-desktop:
+    needs: release
     env:
       PLATFORM_ENV: native
 
@@ -168,11 +195,12 @@ jobs:
           releaseDraft: true
           prerelease: false
 
-  # deploy_desktop:
-  #   needs: build_desktop
+  # deploy-desktop:
+  #   needs: build-desktop
   #   runs-on: ubuntu-latest
 
   build-mobile:
+    needs: release
     env:
       PLATFORM_ENV: native
       ANDROID_HOME:
@@ -246,6 +274,6 @@ jobs:
           mv native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk native/gen/android/app/build/outputs/apk/universal/release/Nuxtemplate_${{ github.ref }}_arm64.apk
           gh release upload ${{ github.ref }} native/gen/android/app/build/outputs/apk/universal/release/Nuxtemplate_${{ github.ref }}_arm64.apk
 
-  # deploy_mobile:
+  # deploy-mobile:
   #   needs: build-mobile
   #   runs-on: ubuntu-latest
