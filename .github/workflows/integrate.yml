@@ -52,7 +52,9 @@ jobs:
           commit_message: 'chore: apply code fixes [skip ci]'
 
       - name: Bump Version
-        run: pnpx changelogen@latest --bump
+        run: |
+          rm -f CHANGELOG.md
+          pnpx changelogen@latest --bump
 
       - name: Read CHANGELOG.md
         run: echo "CHANGELOG_CONTENT<<EOF" >> $GITHUB_ENV && cat CHANGELOG.md >> $GITHUB_ENV && echo "EOF" >> $GITHUB_ENV
