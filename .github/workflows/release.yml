@@ -32,8 +32,8 @@ jobs:
           node-version: lts/*
           cache: 'pnpm'
 
-      - name: Bump Version
-        run: pnpx changelogen@latest --release
+      # - name: Bump Version
+      #   run: pnpx changelogen@latest --release
 
       - name: Automerge
         uses: pascalgn/automerge-action@v0.16.4
