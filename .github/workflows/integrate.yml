@@ -54,13 +54,15 @@ jobs:
       - name: Bump Version
         run: pnpx changelogen@latest --bump
 
+      - name: Read CHANGELOG.md
+        run: echo "CHANGELOG_CONTENT<<EOF" >> $GITHUB_ENV && cat CHANGELOG.md >> $GITHUB_ENV && echo "EOF" >> $GITHUB_ENV
+
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: 'chore(release): update version'
           title: 'chore(release): update version'
-          body: |
-            $(cat CHANGELOG.md)
+          body: ${{ env.CHANGELOG_CONTENT }}
           branch: 'release/update-version'
           base: 'develop'
           delete-branch: true
