@@ -1,5 +1,11 @@
 name: Nuxt CI
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
 on:
   push:
     branches:
@@ -7,13 +13,8 @@ on:
 
 jobs:
   build:
+    if: '!contains(github.event.head_commit.message, "[skip ci]")'
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-      id-token: write
 
     steps:
       - name: Checkout Repo
@@ -22,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup pnpm
-        run: npm i -g pnpm
+        run: npm install -g pnpm
 
       - name: Setup Node.js with pnpm
         uses: actions/setup-node@v4
@@ -45,7 +46,23 @@ jobs:
       - name: Format Code
         run: pnpm format
 
-      - name: Create Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpx semantic-release
+      - name: AutoFix Code
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: apply code fixes [skip ci]'
+
+      - name: Bump Version
+        id: bump
+        run: |
+          VERSION_OUTPUT=$(pnpx changelogen@latest --bump)
+          echo "version=$VERSION_OUTPUT" >> $GITHUB_OUTPUT
+
+      - name: Create or Update Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'chore(release): update version'
+          title: 'chore(release): update version'
+          body: '${{ steps.bump.outputs.version }}'
+          branch: 'release/update-version'
+          base: 'develop'
+          delete-branch: true

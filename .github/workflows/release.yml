@@ -1,0 +1,38 @@
+name: Nuxt Release
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - develop
+jobs:
+  release:
+    if: contains(github.event.pull_request.title, 'Release')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bump Version
+        run: pnpx changelogen@latest --release
+
+      - name: Automerge
+        uses: pascalgn/automerge-action@v0.16.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: squash
+
+      - name: Create Release Note
+        run: pnpx changelogen@latest gh release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
