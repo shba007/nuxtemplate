@@ -8,9 +8,9 @@ permissions:
   id-token: write
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  release:
+    types:
+      - created
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
