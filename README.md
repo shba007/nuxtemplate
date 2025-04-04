@@ -90,7 +90,8 @@ dir public/pwa
 
 ## Reinitialize Android
 
-pnpm android init
+rm -rf native/gen/android
+pnpm tauri android init
 
 ## Development Server
 
