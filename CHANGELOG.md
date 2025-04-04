@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.7.0
+## v1.8.0
 
-[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.5.0...v1.7.0)
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.5.0...v1.8.0)
 
 ### 🚀 Enhancements
 
@@ -27,6 +27,7 @@
 - Update CI workflow condition to use startsWith for merge messages ([bbfe21a](https://github.com/shba007/nuxtemplate/commit/bbfe21a))
 - Update release workflow to checkout develop branch before creating release notes ([c2dec4c](https://github.com/shba007/nuxtemplate/commit/c2dec4c))
 - Update release workflow to handle no changes during merge from develop to main ([1f9b450](https://github.com/shba007/nuxtemplate/commit/1f9b450))
+- Configure git user for automated merge in release workflow ([71cc114](https://github.com/shba007/nuxtemplate/commit/71cc114))
 
 ### 💅 Refactors
 
@@ -47,6 +48,7 @@
 - **release:** Update version ([9e5be4d](https://github.com/shba007/nuxtemplate/commit/9e5be4d))
 - **release:** Update version ([e47568b](https://github.com/shba007/nuxtemplate/commit/e47568b))
 - **release:** Update version ([a6183c7](https://github.com/shba007/nuxtemplate/commit/a6183c7))
+- **release:** Update version ([cd18834](https://github.com/shba007/nuxtemplate/commit/cd18834))
 
 ### ❤️ Contributors
 
