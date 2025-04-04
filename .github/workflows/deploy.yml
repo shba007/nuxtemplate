@@ -67,7 +67,7 @@ jobs:
           echo "buildtime=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_OUTPUT
           echo "version=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_OUTPUT
 
-      - name: Build and push Docker image
+      - name: Build and Upload Docker image
         id: push
         uses: docker/build-push-action@v6
         with:
@@ -157,7 +157,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Bulid and Upload Artifact
+      - name: Build and Upload Artifact
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -240,7 +240,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Bulid & Upload Artifact
+      - name: Build and Upload Artifact
         run: |
           pnpm tauri android build
           mv native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk native/gen/android/app/build/outputs/apk/universal/release/Nuxtemplate_${{ github.ref }}_arm64.apk

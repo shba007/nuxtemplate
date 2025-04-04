@@ -86,6 +86,12 @@ pnpx giget@latest gh:shba007/nuxtemplate
 
 ## Change the Icons and Screenshots
 
+dir public/pwa
+
+## Reinitialize Android
+
+pnpm android init
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:

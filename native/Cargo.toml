@@ -1,6 +1,5 @@
 [package]
 name = "nuxtemplate"
-version = "0.0.0"
 description = "Nuxt Template"
 authors = ["Shirsendu Bairagi"]
 license = "LGPL-3.0-or-later"
