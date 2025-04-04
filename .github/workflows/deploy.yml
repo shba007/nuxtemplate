@@ -268,11 +268,27 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build and Upload Artifact
-        run: |
-          pnpm tauri android build
-          mv native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk native/gen/android/app/build/outputs/apk/universal/release/Nuxtemplate_${{ github.ref }}_arm64.apk
-          gh release upload ${{ github.ref }} native/gen/android/app/build/outputs/apk/universal/release/Nuxtemplate_${{ github.ref }}_arm64.apk
+      - name: Bulid Artifact
+        run: pnpm tauri android build
+
+      - name: Get Latest Release Tag
+        id: get_release
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const latest = await github.rest.repos.getLatestRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            core.setOutput('tag', latest.data.tag_name);
+
+      - name: Upload Artifact
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
+          asset_name: nuxtemplate_${{ steps.get_release.outputs.tag }}_arm64.apk
+          tag: ${{ steps.get_release.outputs.tag }}
 
   # deploy-mobile:
   #   needs: build-mobile
