@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.1.0
+## v1.2.0
 
-[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.0.0...v1.1.0)
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v1.0.0...v1.2.0)
 
 ### 🚀 Enhancements
 
@@ -15,6 +15,8 @@
 - Update output formatting in integrate.yml for version bump ([cc4f838](https://github.com/shba007/nuxtemplate/commit/cc4f838))
 - Streamline version bump process in integrate.yml and update PR body to include CHANGELOG ([2e42445](https://github.com/shba007/nuxtemplate/commit/2e42445))
 - Read CHANGELOG.md content into environment variable for PR body ([bba817c](https://github.com/shba007/nuxtemplate/commit/bba817c))
+- Add pnpm setup to release workflow for improved package management ([99056d3](https://github.com/shba007/nuxtemplate/commit/99056d3))
+- Remove existing CHANGELOG.md before bumping version ([e7a6614](https://github.com/shba007/nuxtemplate/commit/e7a6614))
 
 ### 🏡 Chore
 
@@ -28,6 +30,7 @@
 - Add semantic-release configuration and update GitHub Actions workflow ([a1ecd66](https://github.com/shba007/nuxtemplate/commit/a1ecd66))
 - Update GitHub Actions workflows to streamline permissions and add release automation ([e3835af](https://github.com/shba007/nuxtemplate/commit/e3835af))
 - Remove CHANGELOG.md file ([96149cc](https://github.com/shba007/nuxtemplate/commit/96149cc))
+- **release:** Update version ([315f6a3](https://github.com/shba007/nuxtemplate/commit/315f6a3))
 
 ### 🤖 CI
 
@@ -36,3 +39,4 @@
 ### ❤️ Contributors
 
 - Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+- Shba007 ([@shba007](https://github.com/shba007))
