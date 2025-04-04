@@ -1,8 +1,8 @@
 name: Nuxt CD
-run-name: ${{ github.ref_name }}
+run-name: Version Release
 
 permissions:
-  contents: read
+  contents: write
   packages: write
   attestations: write
   id-token: write
