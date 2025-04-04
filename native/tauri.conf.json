@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "nuxtemplate",
-  "version": "1.0.0",
+  "version": "../package.json",
   "identifier": "dev.shirsendubairagi.nuxtemplate",
   "build": {
     "frontendDist": "../dist",
