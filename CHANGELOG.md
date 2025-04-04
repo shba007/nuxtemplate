@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.1.7
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.6...v0.1.7)
+
+### 🩹 Fixes
+
+- Update docker-compose to use the correct image for the app service ([120b183](https://github.com/shba007/nuxtemplate/commit/120b183))
+- Update deploy workflow to fetch latest release tag and upload artifact with dynamic name ([f760fbf](https://github.com/shba007/nuxtemplate/commit/f760fbf))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.1.6
 
 ### 🚀 Enhancements
