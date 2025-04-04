@@ -54,7 +54,8 @@ jobs:
           rm -f CHANGELOG.md
           pnpx changelogen@latest --bump
           echo "CHANGELOG_CONTENT<<EOF" >> $GITHUB_ENV && cat CHANGELOG.md >> $GITHUB_ENV && echo "EOF" >> $GITHUB_ENV
-          # git reset --hard
+          git reset --hard
+          pnpx changelogen@latest --bump
 
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v7
