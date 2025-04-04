@@ -14,7 +14,7 @@ on:
       - develop
 jobs:
   release:
-    if: contains(github.event.pull_request.title, 'Release')
+    if: contains(github.event.pull_request.title, 'chore(release)')
     runs-on: ubuntu-latest
 
     steps:
@@ -35,11 +35,10 @@ jobs:
       # - name: Bump Version
       #   run: pnpx changelogen@latest --release
 
-      - name: Automerge
-        uses: pascalgn/automerge-action@v0.16.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_METHOD: squash
+      - name: Merge develop into main
+        run: |
+          git merge origin/develop --squash -m "chore(sync): develop -> main"
+          git push origin main
 
       - name: Create Release Note
         run: pnpx changelogen@latest gh release
