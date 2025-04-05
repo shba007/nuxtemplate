@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.11
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.10...v0.1.11)
+
+### 🩹 Fixes
+
+- Update APK file path in deployment workflow ([90434e3](https://github.com/shba007/nuxtemplate/commit/90434e3))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.1.10
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.6...v0.1.10)
