@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.1.12
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.10...v0.1.12)
+
+### 🚀 Enhancements
+
+- Refactor deployment workflows and add new release workflow ([fe0bc4a](https://github.com/shba007/nuxtemplate/commit/fe0bc4a))
+
+### 🩹 Fixes
+
+- Update APK file path in deployment workflow ([90434e3](https://github.com/shba007/nuxtemplate/commit/90434e3))
+
+### 🤖 CI
+
+- **release:** Update version ([7fe4ab6](https://github.com/shba007/nuxtemplate/commit/7fe4ab6))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.11
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.10...v0.1.11)
