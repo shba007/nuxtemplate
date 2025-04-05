@@ -1,5 +1,5 @@
 name: Nuxt CD
-run-name: Version Release
+run-name: ${{ github.ref_name }}
 
 permissions:
   contents: write
@@ -8,47 +8,21 @@ permissions:
   id-token: write
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: true
 
 env:
   REPO: ${{ github.repository }}
   REGISTRY: ${{ vars.REGISTRY }}
   USERNAME: ${{ vars.USERNAME }}
+  VERSION: ${{ github.ref_name }}
 
 jobs:
-  release:
-    if: contains(github.event.head_commit.message, 'ci(release):')
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup pnpm
-        run: npm install -g pnpm
-
-      - name: Setup Node.js with pnpm
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'pnpm'
-
-      - name: Create Release Note
-        run: |
-          pnpx changelogen@latest gh release
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
   build-web:
-    needs: release
     runs-on: ubuntu-latest
 
     outputs:
@@ -132,7 +106,6 @@ jobs:
             docker compose -f docker-compose.yml up -d
 
   build-desktop:
-    needs: release
     env:
       PLATFORM_ENV: native
 
@@ -200,7 +173,6 @@ jobs:
   #   runs-on: ubuntu-latest
 
   build-mobile:
-    needs: release
     env:
       PLATFORM_ENV: native
       ANDROID_HOME:
@@ -271,24 +243,13 @@ jobs:
       - name: Build Artifact
         run: pnpm tauri android build
 
-      - name: Get Latest Release Tag
-        id: get_release
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const latest = await github.rest.repos.getLatestRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
-            core.setOutput('tag', latest.data.tag_name);
-      - run: ls -a -R
       - name: Upload Artifact
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
-          asset_name: nuxtemplate_${{ steps.get_release.outputs.tag }}_arm64.apk
-          tag: ${{ steps.get_release.outputs.tag }}
+          asset_name: nuxtemplate_${{ env.VERSION }}_arm64.apk
+          tag: ${{ env.VERSION }}
 
   # deploy-mobile:
   #   needs: build-mobile
