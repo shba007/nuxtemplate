@@ -281,7 +281,7 @@ jobs:
               repo: context.repo.repo
             });
             core.setOutput('tag', latest.data.tag_name);
-
+      - run: ls -a -R
       - name: Upload Artifact
         uses: svenstaro/upload-release-action@v2
         with:
