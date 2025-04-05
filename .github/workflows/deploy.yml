@@ -48,7 +48,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   build-web:
-    needs: release
     runs-on: ubuntu-latest
 
     outputs:
@@ -268,7 +267,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Bulid Artifact
+      - name: Build Artifact
         run: pnpm tauri android build
 
       - name: Get Latest Release Tag
