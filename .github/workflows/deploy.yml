@@ -48,6 +48,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   build-web:
+    needs: release
     runs-on: ubuntu-latest
 
     outputs:
@@ -285,7 +286,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
+          file: nuxtemplate/native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
           asset_name: nuxtemplate_${{ steps.get_release.outputs.tag }}_arm64.apk
           tag: ${{ steps.get_release.outputs.tag }}
 
