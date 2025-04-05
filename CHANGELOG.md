@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.1.9
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.6...v0.1.9)
+
+### 🩹 Fixes
+
+- Update docker-compose to use the correct image for the app service ([120b183](https://github.com/shba007/nuxtemplate/commit/120b183))
+- Update deploy workflow to fetch latest release tag and upload artifact with dynamic name ([f760fbf](https://github.com/shba007/nuxtemplate/commit/f760fbf))
+- Correct spelling in deploy workflow and remove unnecessary dependency ([462f83a](https://github.com/shba007/nuxtemplate/commit/462f83a))
+- Update deployment workflow and correct image repository ([8870d35](https://github.com/shba007/nuxtemplate/commit/8870d35))
+
+### 🤖 CI
+
+- **release:** Update version ([57a1c93](https://github.com/shba007/nuxtemplate/commit/57a1c93))
+- **release:** Update version ([9a4e022](https://github.com/shba007/nuxtemplate/commit/9a4e022))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.8
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.6...v0.1.8)
