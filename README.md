@@ -93,6 +93,8 @@ dir public/pwa
 rm -rf native/gen/android
 pnpm tauri android init
 
+set tauri.conf.json to "version": "../package.json",
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:

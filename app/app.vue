@@ -30,11 +30,11 @@ html {
 }
 
 body {
-  @apply relative min-h-screen overflow-x-hidden bg-light-400 font-body text-black dark:bg-dark-400 dark:text-white;
+  @apply relative min-h-screen overflow-x-hidden bg-light-400 fill-black font-body text-black dark:bg-dark-400 dark:fill-white dark:text-white;
 }
 
-.nuxt-icon > svg {
-  @apply !m-0;
+svg.iconify--local {
+  @apply !m-0 !box-content;
 }
 
 .scrollbar-hidden {

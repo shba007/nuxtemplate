@@ -1,21 +1,33 @@
+import vue from '@vitejs/plugin-vue'
+
 const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
     ? {
         ssr: false,
-        ignore: ['**/src-tauri/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
+        // ignore:  ['**/src-tauri/**', '**/node_modules/**', '**/.git/**', '**/.nuxt/**', '**/.output/**', '**/dist/**', '**/public/**'],
         devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
         vite: {
           clearScreen: false,
           envPrefix: ['VITE_', 'TAURI_'],
           server: {
             strictPort: true,
-            watch: {
-              ignored: ['**/src-tauri/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/public/**', '**/.output/**'],
-            },
+            // watch: {
+            //   ignored: ['**/src-tauri/**', '**/node_modules/**', '**/.git/**', '**/.nuxt/**', '**/.output/**', '**/dist/**', '**/public/**'],
+            // },
           },
         },
         nitro: {
           compressPublicAssets: true,
+          storage: {
+            fs: {
+              driver: 'fs',
+              base: './static',
+            },
+          },
+          rollupConfig: {
+            plugins: [vue()],
+          },
+          routes: [],
         },
       }
     : {}
@@ -79,6 +91,7 @@ export default defineNuxtConfig({
   icon: {
     componentName: 'NuxtIcon',
     provider: 'server',
+    mode: 'svg',
     customCollections: [
       {
         prefix: 'local',
