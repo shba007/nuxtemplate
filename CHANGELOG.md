@@ -1,5 +1,30 @@
 # Changelog
 
+## v0.1.13
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.12...v0.1.13)
+
+### 🚀 Enhancements
+
+- Refactor deployment workflows and add new release workflow ([fe0bc4a](https://github.com/shba007/nuxtemplate/commit/fe0bc4a))
+
+### 💅 Refactors
+
+- Runtime changed from node to bun ([816e8fd](https://github.com/shba007/nuxtemplate/commit/816e8fd))
+
+### 🏡 Chore
+
+- **ci:** Both github and docker container registry added ([cd33c9d](https://github.com/shba007/nuxtemplate/commit/cd33c9d))
+
+### 🤖 CI
+
+- **release:** Update version ([10ba559](https://github.com/shba007/nuxtemplate/commit/10ba559))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.1.12
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.10...v0.1.12)
