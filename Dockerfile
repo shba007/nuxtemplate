@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY package.json bun.lock ./
 
+COPY nuxt.config.ts prisma ./
+
 ENV NITRO_PRESET=bun
 
 RUN bun install --frozen-lockfile

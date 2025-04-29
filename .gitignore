@@ -31,3 +31,4 @@ native/gen/android/keystore.properties
 
 prisma/*.db
 prisma/*.db-*
+prisma/generated

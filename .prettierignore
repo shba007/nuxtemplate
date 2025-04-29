@@ -27,3 +27,7 @@ logs
 
 # Tauri files
 native
+
+prisma/*.db
+prisma/*.db-*
+prisma/generated
