@@ -4,16 +4,25 @@ const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
     ? {
         ssr: false,
-        // ignore:  ['**/src-tauri/**', '**/node_modules/**', '**/.git/**', '**/.nuxt/**', '**/.output/**', '**/dist/**', '**/public/**'],
-        devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
+        ignore: ['**/native/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
+        devServer: { host: process.env.TAURI_DEV_HOST || 'localhost' },
+        hooks: {
+          'vite:extend': function ({ config }) {
+            if (config.server && config.server.hmr && config.server.hmr !== true) {
+              config.server.hmr.protocol = 'ws'
+              config.server.hmr.host = process.env.NUXT_HMR_HOST || process.env.TAURI_DEV_HOST || undefined
+              config.server.hmr.port = 3000
+            }
+          },
+        },
         vite: {
           clearScreen: false,
           envPrefix: ['VITE_', 'TAURI_'],
           server: {
+            watch: {
+              ignored: ['**/native/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/public/**', '**/.output/**'],
+            },
             strictPort: true,
-            // watch: {
-            //   ignored: ['**/src-tauri/**', '**/node_modules/**', '**/.git/**', '**/.nuxt/**', '**/.output/**', '**/dist/**', '**/public/**'],
-            // },
           },
         },
         nitro: {

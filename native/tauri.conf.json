@@ -1,11 +1,11 @@
 {
-  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "$schema": "https://schema.tauri.app/config/2",
   "productName": "NuxTemplate",
   "version": "../package.json",
-  "identifier": "dev.shirsendubairagi.nuxtemplate",
+  "identifier": "dev.shirsendu-bairagi.nuxtemplate",
   "build": {
-    "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",
+    "frontendDist": "../dist",
     "beforeDevCommand": "dotenvx run -f .env.native -- nuxt dev",
     "beforeBuildCommand": "dotenvx run -f .env.native -- nuxt generate"
   },
@@ -13,8 +13,8 @@
     "windows": [
       {
         "title": "NuxTemplate",
-        "width": 800,
-        "height": 600,
+        "width": 1400,
+        "height": 720,
         "resizable": true,
         "fullscreen": false
       }

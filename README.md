@@ -2,14 +2,7 @@
 
 # Todo
 
-- [x] Add Authentication and Authorization
-- [x] Add Database
 - [ ] Add Testing
-- [x] Add Git Precommit Hooks
-  - Lint
-  - Format
-  - Gitleaks
-- [x] Add Auto Release
 
 ## External Dependencies
 
@@ -79,10 +72,7 @@ pnpx giget@latest gh:shba007/nuxtemplate
 ### In github registry add Repo or Org Vars following
 
 - Vars
-  - REGISTRY
   - USERNAME
-  - PORT
-  - NITRO_PRESET
 
 ## Change the Icons and Screenshots
 
@@ -91,7 +81,7 @@ dir public/pwa
 ## Reinitialize Android
 
 rm -rf native/gen/android
-pnpm tauri android init
+bun tauri android init
 
 set tauri.conf.json to "version": "../package.json",
 
