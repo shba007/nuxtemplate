@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.1.14
+
+### 🚀 Enhancements
+
+- Implement Prisma client singleton for efficient database access ([e9f6da7](https://github.com/shba007/nuxtemplate/commit/e9f6da7))
+
+### 🏡 Chore
+
+- Apply code fixes [skip ci] ([fe4a881](https://github.com/shba007/nuxtemplate/commit/fe4a881))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.13
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.12...v0.1.13)
