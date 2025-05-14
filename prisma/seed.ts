@@ -1,4 +1,4 @@
-import prisma from '../server/lib/prisma'
+import prisma from '../server/utils/prisma'
 
 async function main() {
   // Example: Create a user

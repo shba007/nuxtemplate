@@ -1,42 +1,20 @@
-import vue from '@vitejs/plugin-vue'
-
 const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
     ? {
         ssr: false,
-        ignore: ['**/native/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
-        devServer: { host: process.env.TAURI_DEV_HOST || 'localhost' },
-        hooks: {
-          'vite:extend': function ({ config }) {
-            if (config.server && config.server.hmr && config.server.hmr !== true) {
-              config.server.hmr.protocol = 'ws'
-              config.server.hmr.host = process.env.NUXT_HMR_HOST || process.env.TAURI_DEV_HOST || undefined
-              config.server.hmr.port = 3000
-            }
-          },
-        },
+        // ignore: ['**/native/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
+        // eslint-disable-next-line no-constant-binary-expression
+        devServer: { host: '0.0.0.0' || process.env.TAURI_DEV_HOST || 'localhost' },
         vite: {
           clearScreen: false,
           envPrefix: ['VITE_', 'TAURI_'],
           server: {
-            watch: {
-              ignored: ['**/native/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/public/**', '**/.output/**'],
-            },
+            // watch: {
+            //   ignored: ["**/native/**"],
+            //   usePolling: true
+            // },
             strictPort: true,
           },
-        },
-        nitro: {
-          compressPublicAssets: true,
-          storage: {
-            fs: {
-              driver: 'fs',
-              base: './static',
-            },
-          },
-          rollupConfig: {
-            plugins: [vue()],
-          },
-          routes: [],
         },
       }
     : {}
@@ -80,12 +58,13 @@ export default defineNuxtConfig({
       buildTime: '',
     },
     public: {
-      apiBaseUrl: '',
+      siteUrl: '',
       scripts: {
         googleAnalytics: {
           id: '',
         },
       },
+      vapidKey: '',
     },
     private: {},
   },
@@ -118,12 +97,16 @@ export default defineNuxtConfig({
     fallback: 'light',
     classSuffix: '',
   },
+  site: {
+    name: 'NuxTemplate',
+    url: process.env.NUXT_PUBLIC_SITE_URL,
+  },
+  sitemap: {
+    autoLastmod: true,
+    sources: ['/api/__sitemap__/urls'],
+  },
   robots: {
     disallow: ['/_nuxt/'],
-  },
-  site: {
-    url: 'https://nuxtemplate.com',
-    name: 'NuxTemplate',
   },
   pwa: {
     scope: '/',
@@ -277,6 +260,7 @@ export default defineNuxtConfig({
         },
       ],
       navigateFallback: undefined,
+      importScripts: ['/sw-push.js'],
     },
     client: {
       installPrompt: true,

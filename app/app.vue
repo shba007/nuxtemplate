@@ -1,4 +1,52 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const title = `NuxTemplate`
+const description = `Nuxt Template Description`
+const {
+  public: { siteUrl },
+} = useRuntimeConfig()
+
+useHead({
+  htmlAttrs: {
+    lang: 'en',
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico',
+    },
+  ],
+})
+
+useSeoMeta({
+  ogType: 'profile',
+  ogImageWidth: 1280,
+  ogImageHeight: 640,
+  fbAppId: 966242223397117,
+  twitterCard: 'summary_large_image',
+  colorScheme: 'light dark',
+  viewport: {
+    initialScale: 1.0,
+    maximumScale: 1.0,
+    minimumScale: 1.0,
+    userScalable: 'no',
+    viewportFit: 'cover',
+  },
+})
+
+useSchemaOrg([
+  defineWebPage({
+    datePublished: new Date(2024, 1, 1).toISOString(),
+    dateModified: new Date(2024, 1, 1).toISOString(),
+    author: 'Shirsendu Bairagi',
+  }),
+  defineWebSite({
+    url: siteUrl,
+    name: title,
+    description: description,
+  }),
+])
+</script>
 
 <template>
   <NuxtRouteAnnouncer />
@@ -37,15 +85,12 @@ svg.iconify--local {
   @apply !m-0 !box-content;
 }
 
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scrollbar-width: none;
-  /* Firefox */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-  /* Safari and Chrome */
+  width: 0;
+  height: 0;
 }
 </style>

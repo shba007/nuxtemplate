@@ -1,4 +1,28 @@
 <script setup lang="ts">
+const title = `Nuxt Template`
+const description = `Nuxt Template Description`
+const {
+  public: { siteUrl },
+} = useRuntimeConfig()
+
+useSeoMeta({
+  title: title,
+  ogTitle: title,
+  twitterTitle: title,
+  description: description,
+  ogDescription: description,
+  twitterDescription: description,
+  ogImage: `${siteUrl}/previews/landing.webp`,
+  twitterImage: imageUrl,
+  ogUrl: siteUrl,
+})
+
+useSchemaOrg([
+  defineBreadcrumb({
+    itemListElement: [{ name: 'Home', item: '/' }],
+  }),
+])
+
 const { user, session } = useUserSession()
 </script>
 

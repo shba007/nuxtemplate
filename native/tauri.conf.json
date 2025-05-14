@@ -4,10 +4,10 @@
   "version": "../package.json",
   "identifier": "dev.shirsendu-bairagi.nuxtemplate",
   "build": {
-    "devUrl": "http://localhost:3000",
-    "frontendDist": "../dist",
     "beforeDevCommand": "dotenvx run -f .env.native -- nuxt dev",
-    "beforeBuildCommand": "dotenvx run -f .env.native -- nuxt generate"
+    "beforeBuildCommand": "dotenvx run -f .env.native -- nuxt generate",
+    "devUrl": "http://localhost:3000",
+    "frontendDist": "../dist"
   },
   "app": {
     "windows": [
