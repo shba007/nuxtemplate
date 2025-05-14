@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.15
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.14...v0.1.15)
+
+### 🏡 Chore
+
+- Update dependencies and configuration ([b0ffd04](https://github.com/shba007/nuxtemplate/commit/b0ffd04))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.14
 
 ### 🚀 Enhancements
