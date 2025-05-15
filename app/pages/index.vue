@@ -27,7 +27,7 @@ const { user, session } = useUserSession()
 </script>
 
 <template>
-  <main class="flex h-screen w-screen items-center justify-center bg-black">
+  <main class="flex h-screen w-screen items-center justify-center">
     <AuthState>
       <template #default="{ loggedIn, clear }">
         <div v-if="loggedIn && user">

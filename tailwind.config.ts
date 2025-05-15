@@ -15,8 +15,8 @@ export default <Partial<Config>>{
       '5xl': ['3.5rem', '4.1875rem'],
     },
     fontFamily: {
-      head: ['', 'sans-serif'],
-      body: ['', 'sans-serif'],
+      main: ['', 'sans-serif'],
+      sub: ['', 'sans-serif'],
     },
     fontWeight: {
       light: '300',

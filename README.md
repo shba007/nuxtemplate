@@ -18,6 +18,12 @@ pnpx giget@latest gh:shba007/nuxtemplate
 
 ## Change Placeholder Value
 
+### In docker-compose.yml
+
+- name
+- image
+- port
+
 ### In package.json change the following
 
 - name
@@ -65,7 +71,7 @@ pnpx giget@latest gh:shba007/nuxtemplate
   - windows
     - title
 
-### In .github\worflows\deploy.yml change the following
+### In .github\workflows\deploy.yml change the following
 
 - asset_name [deploy.yml](.github/workflows/deploy.yml) in line 271
 
