@@ -4,6 +4,7 @@ const description = `Nuxt Template Description`
 const {
   public: { siteUrl },
 } = useRuntimeConfig()
+const imageUrl = `${siteUrl}/previews/landing.webp`
 
 useSeoMeta({
   title: title,
@@ -12,7 +13,7 @@ useSeoMeta({
   description: description,
   ogDescription: description,
   twitterDescription: description,
-  ogImage: `${siteUrl}/previews/landing.webp`,
+  ogImage: imageUrl,
   twitterImage: imageUrl,
   ogUrl: siteUrl,
 })

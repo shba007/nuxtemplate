@@ -1,9 +1,9 @@
 # Nuxt dev/build outputs
-.output
+.cache
 .data
 .nuxt
 .nitro
-.cache
+.output
 dist
 
 # Node dependencies
@@ -29,6 +29,7 @@ native/target/
 native/gen/schemas
 native/gen/android/keystore.properties
 
+# Prisma files
 prisma/*.db
 prisma/*.db-*
 prisma/generated

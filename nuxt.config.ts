@@ -1,19 +1,25 @@
+const host = process.env.TAURI_DEV_HOST
+
 const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
     ? {
         ssr: false,
         // ignore: ['**/native/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
-        // eslint-disable-next-line no-constant-binary-expression
-        devServer: { host: '0.0.0.0' || process.env.TAURI_DEV_HOST || 'localhost' },
+        devServer: { host: host || 'localhost' },
         vite: {
           clearScreen: false,
           envPrefix: ['VITE_', 'TAURI_'],
           server: {
-            // watch: {
-            //   ignored: ["**/native/**"],
-            //   usePolling: true
-            // },
+            host: host || false,
+            port: 1420,
             strictPort: true,
+            hmr: host
+              ? {
+                  protocol: 'ws',
+                  host: host,
+                  port: 1430,
+                }
+              : undefined,
           },
         },
       }

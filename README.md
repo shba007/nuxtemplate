@@ -94,3 +94,53 @@ set tauri.conf.json to "version": "../package.json",
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
+
+## How to Deploy
+
+1. Initialize Swarm on the Manager Node
+
+```bash
+docker swarm init --advertise-addr <MANAGER-IP>
+```
+
+2. Join Worker Nodes to the Swarm
+
+```bash
+docker swarm join --token <WORKER-TOKEN> <MANAGER-IP>:2377
+```
+
+3. Check Node Status
+
+```bash
+docker node ls
+```
+
+4. Create a docker volume
+
+```bash
+docker volume create \
+  --name nuxtemplate_static \
+  --driver local \
+  --opt type=none \
+  --opt device=~/shba007/nuxtemplate/static \
+  --opt o=bind
+```
+
+5. Use Docker Stack to deploy multi-container application
+
+```bash
+export $(cat .env.prod) && docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
+```
+
+6. Scale the service
+
+```bash
+docker service scale nuxtemplate_app=5
+```
+
+7. Check
+
+```bash
+docker service ls
+docker service ps nuxtemplate_app
+```
