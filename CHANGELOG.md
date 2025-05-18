@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.1.15
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.14...v0.1.15)
+
+### 🚀 Enhancements
+
+- Initialize Android project structure and resources ([83a6eb7](https://github.com/shba007/nuxtemplate/commit/83a6eb7))
+- Update deployment workflow and add production configuration ([7722379](https://github.com/shba007/nuxtemplate/commit/7722379))
+
+### 🏡 Chore
+
+- Update dependencies and configuration ([b0ffd04](https://github.com/shba007/nuxtemplate/commit/b0ffd04))
+- Update README and configuration for improved clarity and functionality ([2f2751b](https://github.com/shba007/nuxtemplate/commit/2f2751b))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.14
 
 ### 🚀 Enhancements
