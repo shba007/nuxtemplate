@@ -115,7 +115,7 @@ jobs:
           script: |
             cd ~/${{ env.REPO }}
             curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.prod.yml
-            export $(cat .env.prod) && docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
+            docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
 
   build-desktop:
     env:
@@ -176,9 +176,9 @@ jobs:
           releaseDraft: true
           prerelease: false
 
-  # deploy-desktop:
-  #   needs: build-desktop
-  #   runs-on: ubuntu-latest
+  deploy-desktop:
+    needs: build-desktop
+    runs-on: ubuntu-latest
 
   build-mobile:
     env:
