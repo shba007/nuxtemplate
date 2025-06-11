@@ -1,4 +1,29 @@
+<p align="center">
+  <img src="./public/logo.png" lt="Logo" width="65" />
+<p>
+
 # Nuxt Template
+
+<p align="center">
+  <a href="https://shirsendu-bairagi.betteruptime.com">
+    <img src="https://uptime.betterstack.com/status-badges/v3/monitor/10aqw.svg" alt="uptime status">
+  </a>
+</p>
+
+![Landing](public/previews/landing.webp)
+
+> Nuxt + Typescript + Tailwind + Tauri Template
+
+- 📦 SSR
+- 🖼️ OG Tags
+- 🚀 PWA
+- ✋ Push Notification
+- 🌙 Light/Dark Mode
+- 🐋 Containerized
+- 🪄 CI/CD (Github Action)
+- 🎭 Authentication (OAuth 2.0)
+- ⚡️ API Route Caching
+- 📐 Analytics
 
 # Todo
 
@@ -129,16 +154,16 @@ docker volume create \
 5. Use Docker Stack to deploy multi-container application
 
 ```bash
-export $(cat .env.prod) && docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
+docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
 ```
 
-6. Scale the service
+6. Scale service
 
 ```bash
-docker service scale nuxtemplate_app=5
+docker service scale nuxtemplate_app=2
 ```
 
-7. Check
+7. Verify
 
 ```bash
 docker service ls

@@ -66,6 +66,7 @@
     "@prisma/client": "6.7.0",
     "@tauri-apps/api": "^2.5.0",
     "@tauri-apps/plugin-opener": "~2.2.7",
+    "@types/web-push": "^3.6.4",
     "@unhead/vue": "^2.0.10",
     "@vite-pwa/nuxt": "^1.0.4",
     "@vueuse/core": "^13.3.0",
