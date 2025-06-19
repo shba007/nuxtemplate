@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.16
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.15...v0.1.16)
+
+### 🩹 Fixes
+
+- Update docker stack deployment name and refine dependency installation ([8821de4](https://github.com/shba007/nuxtemplate/commit/8821de4))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.15
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.14...v0.1.15)
