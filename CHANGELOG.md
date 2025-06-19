@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.17
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.16...v0.1.17)
+
+### 🩹 Fixes
+
+- Add NUXT_PUBLIC_SITE_URL environment variable to desktop and mobile build jobs ([c119435](https://github.com/shba007/nuxtemplate/commit/c119435))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.16
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.15...v0.1.16)
