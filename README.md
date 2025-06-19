@@ -111,10 +111,14 @@ dir public/pwa
 
 ## Reinitialize Android
 
-rm -rf native/gen/android
+rm -rf src-tauri/gen/android
 bun tauri android init
 
 set tauri.conf.json to "version": "../package.json",
+
+## Generate Logo
+
+bun tauri icon ./public/logo.svg
 
 ## Development Server
 
@@ -169,3 +173,11 @@ docker service scale nuxtemplate_app=2
 docker service ls
 docker service ps nuxtemplate_app
 ```
+
+## License
+
+Published under the [MIT](https://github.com/shba007/nuxtemplate/blob/main/LICENSE) license.
+<br><br>
+<a href="https://github.com/shba007/nuxtemplate/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=shba007/nuxtemplate" />
+</a>

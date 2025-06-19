@@ -50,7 +50,7 @@ jobs:
         with:
           images: |
             ghcr.io/${{ env.REPO }}
-          # docker.io/${{ env.REPO }}
+            docker.io/${{ env.REPO }}
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
@@ -72,12 +72,12 @@ jobs:
           username: ${{ env.USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Log in to DockerHub
-      #   uses: docker/login-action@v3
-      #   with:
-      #     registry: docker.io
-      #     username: ${{ env.USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ${{ env.USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: ⚙️ Build and Upload to Registries
         id: push
@@ -115,7 +115,7 @@ jobs:
           script: |
             cd ~/${{ env.REPO }}
             curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.prod.yml
-            docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
+            docker stack deploy --compose-file docker-compose.prod.yml red-cat-pictures
 
   build-desktop:
     env:
@@ -176,9 +176,9 @@ jobs:
           releaseDraft: true
           prerelease: false
 
-  deploy-desktop:
-    needs: build-desktop
-    runs-on: ubuntu-latest
+  # deploy-desktop:
+  #   needs: build-desktop
+  #   runs-on: ubuntu-latest
 
   build-mobile:
     env:
@@ -225,11 +225,11 @@ jobs:
 
       - name: Setup Android Signing
         run: |
-          cd native/gen/android
+          cd src-tauri/gen/android
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
           echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" > keystore.properties
-          base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/keystore.jks
-          echo "storeFile=$RUNNER_TEMP/keystore.jks" >> keystore.properties
+          base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/upload-keystore.jks
+          echo "storeFile=$RUNNER_TEMP/upload-keystore.jks" >> keystore.properties
 
       - name: 🛠️ Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -251,7 +251,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
+          file: src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
           asset_name: nuxtemplate_${{ env.VERSION }}_arm64.apk
           tag: ${{ env.VERSION }}
 

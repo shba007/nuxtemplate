@@ -25,9 +25,8 @@ logs
 !.env.native
 
 # Tauri files
-native/target/
-native/gen/schemas
-native/gen/android/keystore.properties
+src-tauri/target/
+src-tauri/gen/schemas
 
 # Prisma files
 prisma/*.db

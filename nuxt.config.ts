@@ -1,26 +1,30 @@
-const host = process.env.TAURI_DEV_HOST
+const host = process.env.TAURI_DEV_HOST || 'localhost'
+const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000
 
 const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
     ? {
         ssr: false,
-        // ignore: ['**/native/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
-        devServer: { host: host || 'localhost' },
+        devServer: { host },
+        ignore: ['**/src-tauri/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
         vite: {
           clearScreen: false,
           envPrefix: ['VITE_', 'TAURI_'],
           server: {
-            host: host || false,
-            port: 1420,
             strictPort: true,
+            port,
+            host: host || false,
             hmr: host
               ? {
                   protocol: 'ws',
-                  host: host,
-                  port: 1430,
+                  host,
+                  port,
                 }
               : undefined,
           },
+        },
+        nitro: {
+          compressPublicAssets: true,
         },
       }
     : {}

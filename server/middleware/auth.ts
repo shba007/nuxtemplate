@@ -1,9 +1,12 @@
-const protectedRoutePatterns = [/^\/api\/subscription\/[^/]+\/notification\/?$/i]
+const protectedRoutePatterns: {
+  pattern: RegExp
+  method: ('GET' | 'POST' | 'PUT' | 'DELETE')[]
+}[] = [{ pattern: /^\/api\/subscription\/[^/]+\/notification\/?$/i, method: ['POST'] }]
 
 export default defineEventHandler((event) => {
-  console.log('New request: ' + getRequestURL(event))
-
-  const isProtected = protectedRoutePatterns.some((rx) => rx.test(event.node.req.url || ''))
+  const isProtected = protectedRoutePatterns.some(
+    ({ pattern, method }) => pattern.test(event.node.req.url || '') && method.includes(event.node.req.method!.toUpperCase() as 'GET' | 'POST' | 'PUT' | 'DELETE')
+  )
   if (!isProtected) {
     return
   }
