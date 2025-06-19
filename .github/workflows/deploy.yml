@@ -115,7 +115,7 @@ jobs:
           script: |
             cd ~/${{ env.REPO }}
             curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.prod.yml
-            docker stack deploy --compose-file docker-compose.prod.yml red-cat-pictures
+            docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
 
   build-desktop:
     env:
@@ -149,7 +149,7 @@ jobs:
         if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+          sudo apt-get install -y libwebkit2gtk-4.0-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: 🛠️ Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -163,7 +163,7 @@ jobs:
           bun-version: latest
 
       - name: 📦 Install Dependencies
-        run: bun install --frozen-lockfile --production
+        run: bun install --frozen-lockfile
 
       - name: ⚙️ Build and Upload Artifact
         uses: tauri-apps/tauri-action@v0
@@ -242,7 +242,7 @@ jobs:
           bun-version: latest
 
       - name: 📦 Install Dependencies
-        run: bun install --frozen-lockfile --production
+        run: bun install --frozen-lockfile
 
       - name: ⚙️ Build Artifact
         run: bun run tauri android build
