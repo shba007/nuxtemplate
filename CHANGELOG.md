@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.18
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.17...v0.1.18)
+
+### 🩹 Fixes
+
+- Correct artifact build step name in CI workflow ([daafbef](https://github.com/shba007/nuxtemplate/commit/daafbef))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.17
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.16...v0.1.17)
