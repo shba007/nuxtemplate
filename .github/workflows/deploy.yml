@@ -230,8 +230,8 @@ jobs:
           cd src-tauri/gen/android
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
           echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" > keystore.properties
-          base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/upload-keystore.jks
-          echo "storeFile=$RUNNER_TEMP/upload-keystore.jks" >> keystore.properties
+          base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > ./upload-keystore.jks
+          echo "storeFile=../upload-keystore.jks" >> keystore.properties
 
       - name: 🛠️ Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -247,7 +247,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: ⚙️ Build Artifact
-        run: bun run tauri android build
+        run: bun run tauri:build:mobile
 
       - name: ⚙️ Upload Artifact
         uses: svenstaro/upload-release-action@v2
