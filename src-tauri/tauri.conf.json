@@ -13,7 +13,7 @@
     "windows": [
       {
         "label": "main",
-        "visible": false,
+        "visible": true,
         "url": "/",
         "title": "NuxTemplate",
         "width": 1400,
