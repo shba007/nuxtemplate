@@ -126,7 +126,7 @@ export default defineNuxtConfig({
     manifest: {
       name: 'NuxTemplate',
       short_name: 'NuxTemplate',
-      description: 'Nuxt Template',
+      description: 'Nuxt + Typescript + Tailwind + Tauri Template',
       theme_color: '#FFFFFF',
       background_color: '#FFFFFF',
       orientation: 'portrait',

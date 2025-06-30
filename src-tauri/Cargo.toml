@@ -1,6 +1,6 @@
 [package]
 name = "nuxtemplate"
-description = "Nuxt Template"
+description = "Nuxt + Typescript + Tailwind + Tauri Template"
 authors = ["Shirsendu Bairagi <shirsendu2001@gmail.com>"]
 license = "LGPL-3.0-or-later"
 repository = "https://github.com/shba007/nuxtemplate.git"

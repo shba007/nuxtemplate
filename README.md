@@ -2,7 +2,7 @@
   <img src="./public/logo.png" lt="Logo" width="65" />
 <p>
 
-# Nuxt Template
+# NuxTemplate
 
 <p align="center">
   <a href="https://shirsendu-bairagi.betteruptime.com">
@@ -38,7 +38,7 @@
 Clone the template
 
 ```bash
-pnpx giget@latest gh:shba007/nuxtemplate
+bunx giget@latest gh:shba007/nuxtemplate#<branch> <project>
 ```
 
 ## Change Placeholder Value
