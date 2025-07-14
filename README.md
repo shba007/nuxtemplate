@@ -116,6 +116,35 @@ bun tauri android init
 
 set tauri.conf.json to "version": "../package.json",
 
+## Signing Config
+
+goto src-tauri/gen/android/app/build.gradle.kts
+
+```kotlin
+import java.io.FileInputStream
+
+signingConfigs {
+    create("release") {
+        val keystorePropertiesFile = rootProject.file("keystore.properties")
+        val keystoreProperties = Properties()
+        if (keystorePropertiesFile.exists()) {
+            keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+        }
+
+        keyAlias = keystoreProperties["keyAlias"] as String
+        keyPassword = keystoreProperties["password"] as String
+        storeFile = file(keystoreProperties["storeFile"] as String)
+        storePassword = keystoreProperties["password"] as String
+    }
+}
+
+signingConfig = signingConfigs.getByName("release")
+```
+
+put upload-keystore.jks, keystore.properties into src-tauri/gen/android
+
+add those files into the .gitignore on the same folder
+
 ## Generate Logo
 
 bun tauri icon ./public/logo.svg

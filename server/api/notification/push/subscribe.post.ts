@@ -1,20 +1,17 @@
-import { z } from 'zod'
-
-const notificationSubscriptionSchema = z.object({
-  endpoint: z.string(),
-  expirationTime: z.null(),
-  keys: z.object({
-    p256dh: z.string(),
-    auth: z.string(),
-  }),
-})
-
-export type NotificationSubscription = z.infer<typeof notificationSubscriptionSchema>
+export interface NotificationSubscription {
+  endpoint: string
+  expirationTime: null
+  keys: {
+    p256dh: string
+    auth: string
+  }
+}
 
 export default defineEventHandler(async (event) => {
   try {
     const notificationStorage = useStorage<NotificationSubscription>('data:subscription:notification')
-    const body = await readValidatedBody(event, notificationSubscriptionSchema.parse)
+
+    const body = await readBody<NotificationSubscription>(event)
 
     if (await notificationStorage.getItem(body.keys.auth)) {
       return { success: true }
@@ -24,11 +21,11 @@ export default defineEventHandler(async (event) => {
 
     return { success: true }
   } catch (error: unknown) {
-    console.error('API subscription/notification POST', error)
-
     if (error instanceof Error && 'statusCode' in error) {
       throw error
     }
+
+    console.error('API notification/push/subscribe POST', error)
 
     throw createError({
       statusCode: 500,

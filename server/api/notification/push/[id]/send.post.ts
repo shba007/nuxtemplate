@@ -1,15 +1,12 @@
-import { z } from 'zod'
 import webpush from 'web-push'
-import type { NotificationSubscription } from '../notification.post'
+import type { NotificationSubscription } from '../subscribe.post'
 
-const pushNotificationSchema = z.object({
-  title: z.string(),
-  body: z.string(),
-  url: z.string(),
-  icon: z.string().optional(),
-})
-
-export type PushNotification = z.infer<typeof pushNotificationSchema>
+interface PushNotification {
+  title: string
+  body: string
+  url: string
+  icon?: string
+}
 
 export async function sendPushNotification(payload: PushNotification, subscriptions: NotificationSubscription[]) {
   try {
@@ -28,11 +25,12 @@ export async function sendPushNotification(payload: PushNotification, subscripti
 
 export default defineEventHandler(async (event) => {
   try {
+    const { id } = getRouterParams(event)
+    const body = await readBody<PushNotification>(event)
     const notificationStorage = useStorage<NotificationSubscription>('data:subscription:notification')
-    const body = await readValidatedBody(event, pushNotificationSchema.parse)
 
-    const subscriptions = (await notificationStorage.getItems(await notificationStorage.getKeys())).flatMap(({ value }) => value)
-    await sendPushNotification(body, subscriptions)
+    const subscription = (await notificationStorage.getItems(await notificationStorage.getKeys())).flatMap(({ value }) => value).filter(({ keys }) => keys.auth === id)
+    await sendPushNotification(body, subscription)
 
     return { success: true }
   } catch (error: unknown) {
@@ -40,7 +38,7 @@ export default defineEventHandler(async (event) => {
       throw error
     }
 
-    console.error('API subscription/[id]/notification POST', error)
+    console.error('API notification/push/[id]/send POST', error)
 
     throw createError({
       statusCode: 500,

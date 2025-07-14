@@ -20,7 +20,6 @@ env:
   REPO: ${{ github.repository }}
   USERNAME: ${{ vars.USERNAME }}
   VERSION: ${{ github.ref_name }}
-  SITE_URL: ${{ vars.SITE_URL }}
 
 jobs:
   build-web:
@@ -50,7 +49,7 @@ jobs:
         with:
           images: |
             ghcr.io/${{ env.REPO }}
-            docker.io/${{ env.REPO }}
+          # docker.io/${{ env.REPO }}
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
@@ -72,12 +71,12 @@ jobs:
           username: ${{ env.USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Log in to DockerHub
-        uses: docker/login-action@v3
-        with:
-          registry: docker.io
-          username: ${{ env.USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # - name: Log in to DockerHub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: docker.io
+      #     username: ${{ env.USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: ⚙️ Build and Upload to Registries
         id: push
@@ -90,7 +89,7 @@ jobs:
           build-args: |
             VERSION=${{ steps.metadata.outputs.version }}
             BUILD_TIME=${{ steps.metadata.outputs.buildtime }}
-            SITE_URL=${{ env.SITE_URL }}
+            SITE_URL=${{ vars.SITE_URL }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -229,7 +228,7 @@ jobs:
         run: |
           cd src-tauri/gen/android
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
-          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" > keystore.properties
+          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> keystore.properties
           base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > ./upload-keystore.jks
           echo "storeFile=../upload-keystore.jks" >> keystore.properties
 
@@ -253,7 +252,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
+          file: src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
           asset_name: nuxtemplate_${{ env.VERSION }}_arm64.apk
           tag: ${{ env.VERSION }}
 

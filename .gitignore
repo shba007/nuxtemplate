@@ -24,10 +24,6 @@ logs
 !.env.example
 !.env.native
 
-# Tauri files
-src-tauri/target/
-src-tauri/gen/schemas
-
 # Prisma files
 prisma/*.db
 prisma/*.db-*

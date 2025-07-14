@@ -1,5 +1,5 @@
 const host = process.env.TAURI_DEV_HOST || 'localhost'
-const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000
+const port = process.env.PORT ? parseInt(process.env.PORT) : 3000
 
 const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
@@ -24,7 +24,9 @@ const nativeConfig =
           },
         },
         nitro: {
-          compressPublicAssets: true,
+          prerender: {
+            routes: [],
+          },
         },
       }
     : {}
@@ -56,7 +58,7 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
   },
   routeRules: {
-    '/': { isr: 3600 },
+    '/': { ssr: true },
     '/_ipx/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     '/images/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     '/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
@@ -87,7 +89,7 @@ export default defineNuxtConfig({
   },
   icon: {
     componentName: 'NuxtIcon',
-    provider: 'server',
+    provider: 'none',
     mode: 'svg',
     customCollections: [
       {
@@ -95,6 +97,9 @@ export default defineNuxtConfig({
         dir: './app/assets/icons',
       },
     ],
+    clientBundle: {
+      scan: true,
+    },
   },
   image: {},
   scripts: {
@@ -119,17 +124,18 @@ export default defineNuxtConfig({
     disallow: ['/_nuxt/'],
   },
   pwa: {
-    scope: '/',
-    base: '/',
+    strategies: 'generateSW',
     injectRegister: 'auto',
     registerType: 'autoUpdate',
+    includeManifestIcons: false,
     manifest: {
       name: 'NuxTemplate',
       short_name: 'NuxTemplate',
       description: 'Nuxt + Typescript + Tailwind + Tauri Template',
       theme_color: '#FFFFFF',
       background_color: '#FFFFFF',
-      orientation: 'portrait',
+      orientation: 'any',
+      display: 'standalone',
       icons: [
         {
           src: '/pwa/icon-48.png',
@@ -261,38 +267,13 @@ export default defineNuxtConfig({
         },
       ],
     },
-    workbox: {
-      globPatterns: ['**/*.{html,css,js,jpg,jpeg,png,svg,webp,ico,mp3,wav,ogg,mp4,webm,mov,m4a,aac}'],
-      runtimeCaching: [
-        {
-          urlPattern: /\.(?:html|js|css)$/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'dynamic-assets',
-          },
-        },
-        {
-          urlPattern: /\.(?:png|jpg|jpeg|svg|webp|ico|mp3|wav|ogg|mp4|webm|mov|m4a|aac)$/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'static-assets',
-            expiration: { maxEntries: 100, maxAgeSeconds: 7 * 24 * 60 * 60 },
-          },
-        },
-      ],
-      navigateFallback: '/',
-      cleanupOutdatedCaches: true,
-      importScripts: ['/sw-push.js'],
-    },
-    client: {
-      installPrompt: true,
-      periodicSyncForUpdates: 3600,
+    injectManifest: {
+      globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+      globIgnores: ['manifest**.webmanifest'],
     },
     devOptions: {
+      enabled: true,
       type: 'module',
-      enabled: false,
-      suppressWarnings: false,
-      navigateFallback: undefined,
     },
   },
   ...nativeConfig,

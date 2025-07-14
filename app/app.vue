@@ -1,8 +1,10 @@
 <script setup lang="ts">
 const title = `NuxTemplate`
-const description = `Nuxt + Typescript + Tailwind + Tauri Template Description`
+const description = `Nuxt + Typescript + Tailwind + Tauri Template`
+
 const {
-  public: { siteUrl },
+  app: { buildTime },
+  public: { siteUrl, vapidKey },
 } = useRuntimeConfig()
 
 useHead({
@@ -25,19 +27,12 @@ useSeoMeta({
   fbAppId: 966242223397117,
   twitterCard: 'summary_large_image',
   colorScheme: 'light dark',
-  viewport: {
-    initialScale: 1.0,
-    maximumScale: 1.0,
-    minimumScale: 1.0,
-    userScalable: 'no',
-    viewportFit: 'cover',
-  },
 })
 
 useSchemaOrg([
   defineWebPage({
-    datePublished: new Date(2024, 1, 1).toISOString(),
-    dateModified: new Date(2024, 1, 1).toISOString(),
+    datePublished: new Date(2024, 10, 4).toISOString(),
+    dateModified: buildTime,
     author: 'Shirsendu Bairagi',
   }),
   defineWebSite({
@@ -46,17 +41,46 @@ useSchemaOrg([
     description: description,
   }),
 ])
+
+const { $api } = useNuxtApp()
+const { isSupported, permissionGranted } = useWebNotification()
+
+async function getExistingSubscription() {
+  const registration = await navigator.serviceWorker.ready
+  let subscription = await registration.pushManager.getSubscription()
+
+  if (!subscription) {
+    subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: vapidKey,
+    })
+  }
+
+  await $api('/api/notification/push/subscribe', {
+    method: 'POST',
+    body: subscription.toJSON(),
+  })
+
+  return subscription
+}
+
+onMounted(async () => {
+  if (isSupported.value && permissionGranted.value) await getExistingSubscription()
+})
+
+watch(permissionGranted, async (value) => {
+  if (value) await getExistingSubscription()
+})
 </script>
 
 <template>
   <NuxtRouteAnnouncer />
-  <NuxtPwaManifest />
   <NuxtPwaAssets />
-  <!-- <NuxtLoadingIndicator /> -->
+  <NuxtLoadingIndicator color="#0593FA" />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-  <LazyAppInstallPrompt />
+  <LazyAppInstallPrompt hydrate-on-idle />
 </template>
 
 <style>

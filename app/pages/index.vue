@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const title = `NuxTemplate`
-const description = `Nuxt + Typescript + Tailwind + Tauri Template Description`
+const description = `Nuxt + Typescript + Tailwind + Tauri Template`
+
 const {
   public: { siteUrl },
 } = useRuntimeConfig()
