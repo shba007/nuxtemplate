@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.1.19
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.18...v0.1.19)
+
+### 🏡 Chore
+
+- Update dependencies and package manager version ([b5041d8](https://github.com/shba007/nuxtemplate/commit/b5041d8))
+- Update project description and add HOSTNAME to ImportMetaEnv ([08ad082](https://github.com/shba007/nuxtemplate/commit/08ad082))
+- Update notification api ([a67f353](https://github.com/shba007/nuxtemplate/commit/a67f353))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.18
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.17...v0.1.18)
