@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.0
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.19...v0.1.20)
+
+### 🚀 Enhancements
+
+- Add landing preview image and update PWA icons ([4c92711](https://github.com/shba007/nuxtemplate/commit/4c92711))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.1.19
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.18...v0.1.19)
