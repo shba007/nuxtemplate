@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.1.20
+## v0.2.0
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.19...v0.1.20)
 
