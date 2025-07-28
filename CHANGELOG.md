@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.1
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.0...v0.2.1)
+
+### 🏡 Chore
+
+- Update package.json dependencies and license from LGPL to MIT ([31d7d07](https://github.com/shba007/nuxtemplate/commit/31d7d07))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.2.0
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.1.19...v0.1.20)
