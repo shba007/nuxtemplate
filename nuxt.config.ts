@@ -135,7 +135,7 @@ export default defineNuxtConfig({
       theme_color: '#FFFFFF',
       background_color: '#FFFFFF',
       orientation: 'any',
-      display: 'standalone',
+      display: 'fullscreen',
       icons: [
         {
           src: '/pwa/icon-48.png',
