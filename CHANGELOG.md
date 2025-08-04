@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.2.2
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.0...v0.2.2)
+
+### 🏡 Chore
+
+- Update package.json dependencies and license from LGPL to MIT ([31d7d07](https://github.com/shba007/nuxtemplate/commit/31d7d07))
+- Update dependencies and repository URL in package.json ([fc36449](https://github.com/shba007/nuxtemplate/commit/fc36449))
+- Downgrade typescript from 5.9.2 to 5.8.3 in bun.lock and package.json ([29c814c](https://github.com/shba007/nuxtemplate/commit/29c814c))
+
+### 🤖 CI
+
+- **release:** Update version ([50cc159](https://github.com/shba007/nuxtemplate/commit/50cc159))
+- **release:** Update version ([a0d787f](https://github.com/shba007/nuxtemplate/commit/a0d787f))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.1
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.0...v0.2.1)
