@@ -1,6 +1,6 @@
 {
   "name": "nuxtemplate",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Nuxt + Typescript + Tailwind + Tauri Template",
   "author": "Shirsendu Bairagi <shirsendu2001@gmail.com>",
   "license": "MIT",
@@ -89,7 +89,7 @@
     "playwright-core": "^1.54.2",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "typescript": "^5.9.2",
+    "typescript": "~5.8.3",
     "vitest": "^3.2.4"
   },
   "trustedDependencies": [
