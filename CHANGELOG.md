@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.4
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.3...v0.2.4)
+
+### 🚀 Enhancements
+
+- Email auth added, auth guard added ([6b37b39](https://github.com/shba007/nuxtemplate/commit/6b37b39))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.2.3
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.0...v0.2.3)
