@@ -3,7 +3,9 @@ services:
   app:
     image: ghcr.io/shba007/nuxtemplate:latest
     env_file:
-      - .env.prod
+      - .env
+    volumes:
+      - nuxtemplate_data:/app/.data
     ports:
       - 4000:3000
     networks:
@@ -13,6 +15,14 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 3
+
+volumes:
+  nuxtemplate_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /root/nuxtemplate/.data
 
 networks:
   front-tier:

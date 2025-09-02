@@ -187,7 +187,7 @@ docker volume create \
 5. Use Docker Stack to deploy multi-container application
 
 ```bash
-docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
+upload static into /root/nuxtemplate
 ```
 
 6. Scale service

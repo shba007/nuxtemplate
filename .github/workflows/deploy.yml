@@ -100,21 +100,21 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: false
 
-  deploy-web:
-    needs: build-web
-    runs-on: ubuntu-latest
+  # deploy-web:
+  #   needs: build-web
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: 🔀 Deploy to VPS
-        uses: appleboy/ssh-action@v1.1.0
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PASSWORD }}
-          script: |
-            cd ~/${{ env.REPO }}
-            curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.prod.yml
-            docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
+  #   steps:
+  #     - name: 🔀 Deploy to VPS
+  #       uses: appleboy/ssh-action@v1.1.0
+  #       with:
+  #         host: ${{ secrets.VPS_HOST }}
+  #         username: ${{ secrets.VPS_USERNAME }}
+  #         password: ${{ secrets.VPS_PASSWORD }}
+  #         script: |
+  #           cd ~/${{ env.REPO }}
+  #           curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.prod.yml
+  #           docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
 
   build-desktop:
     env:
