@@ -28,3 +28,4 @@ logs
 prisma/*.db
 prisma/*.db-*
 prisma/generated
+/app/generated/prisma

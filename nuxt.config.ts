@@ -26,6 +26,9 @@ const nativeConfig =
           },
         },
         nitro: {
+          rollupConfig: {
+            plugins: [vue()],
+          },
           prerender: {
             routes: [],
           },
@@ -62,6 +65,18 @@ export default defineNuxtConfig({
       plugins: [vue()],
     },
   },
+  /* vite: {
+    // FIXME: temporary fix for email remove when not needed
+    $server: {
+      build: {
+        rollupOptions: {
+          output: {
+            preserveModules: true,
+          },
+        },
+      },
+    },
+  }, */
   routeRules: {
     '/': { ssr: true },
     '/_ipx/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },

@@ -6,8 +6,8 @@ services:
       - .env
     volumes:
       - nuxtemplate_data:/app/.data
-    ports:
-      - 4000:3000
+    expose:
+      - 3000
     networks:
       - front-tier
     deploy:
