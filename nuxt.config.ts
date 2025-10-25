@@ -38,7 +38,7 @@ const nativeConfig =
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-15',
+  compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: [
     '@hannoeru/nuxt-otel',
@@ -64,19 +64,21 @@ export default defineNuxtConfig({
     rollupConfig: {
       plugins: [vue()],
     },
-  },
-  /* vite: {
-    // FIXME: temporary fix for email remove when not needed
-    $server: {
-      build: {
-        rollupOptions: {
-          output: {
-            preserveModules: true,
-          },
-        },
+    storage: {
+      fs: {
+        driver: 'fs',
+        base: './static',
       },
+      /*  r2: {
+         driver: 's3',
+         accessKeyId: '',
+         secretAccessKey: '',
+         endpoint: '',
+         bucket: '',
+         region: '',
+       }, */
     },
-  }, */
+  },
   routeRules: {
     '/': { ssr: true },
     '/_ipx/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
@@ -159,7 +161,6 @@ export default defineNuxtConfig({
       description: 'Nuxt + Typescript + Tailwind + Tauri Template',
       theme_color: '#FFFFFF',
       background_color: '#FFFFFF',
-      orientation: 'any',
       display: 'fullscreen',
       icons: [
         {
