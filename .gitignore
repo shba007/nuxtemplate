@@ -29,3 +29,5 @@ prisma/*.db
 prisma/*.db-*
 prisma/generated
 /app/generated/prisma
+
+/app/generated/prisma
