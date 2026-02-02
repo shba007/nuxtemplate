@@ -1,5 +1,39 @@
 # Changelog
 
+## v0.2.5
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.3...v0.2.5)
+
+### 🚀 Enhancements
+
+- Email auth added, auth guard added ([6b37b39](https://github.com/shba007/nuxtemplate/commit/6b37b39))
+
+### 💅 Refactors
+
+- Update deployment workflow, improve email sign-in logic, and enhance user profile handling ([786edbf](https://github.com/shba007/nuxtemplate/commit/786edbf))
+- Update docker-compose configuration and internal network settings ([30c8361](https://github.com/shba007/nuxtemplate/commit/30c8361))
+- Update nuxt configuration and service worker implementation ([9dce603](https://github.com/shba007/nuxtemplate/commit/9dce603))
+
+### 🏡 Chore
+
+- Update Tauri dependencies and format default capabilities JSON ([5db83a5](https://github.com/shba007/nuxtemplate/commit/5db83a5))
+- Update docker-compose to expose port 3000 instead of mapping to 4000 ([387a7d8](https://github.com/shba007/nuxtemplate/commit/387a7d8))
+- Deps updated ([8837172](https://github.com/shba007/nuxtemplate/commit/8837172))
+- Update dependencies and package manager version ([d29e359](https://github.com/shba007/nuxtemplate/commit/d29e359))
+- Update dependencies and package manager version ([a954b43](https://github.com/shba007/nuxtemplate/commit/a954b43))
+- Update dependencies and package manager version ([3adfe48](https://github.com/shba007/nuxtemplate/commit/3adfe48))
+- Add DATABASE_URL environment variable to workflows ([694ef7b](https://github.com/shba007/nuxtemplate/commit/694ef7b))
+
+### 🤖 CI
+
+- **release:** Update version ([d862d89](https://github.com/shba007/nuxtemplate/commit/d862d89))
+- **release:** Update version ([39d4515](https://github.com/shba007/nuxtemplate/commit/39d4515))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.2.4
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.3...v0.2.4)
