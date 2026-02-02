@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.6
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.5...v0.2.6)
+
+### 🏡 Chore
+
+- Update dependencies and Gradle configuration for Android project ([0aab6e2](https://github.com/shba007/nuxtemplate/commit/0aab6e2))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.5
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.3...v0.2.5)
