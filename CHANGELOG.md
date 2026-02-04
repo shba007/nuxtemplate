@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.7
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.6...v0.2.7)
+
+### 🏡 Chore
+
+- Update trusted dependencies and package versions in bun.lock and package.json ([051b84d](https://github.com/shba007/nuxtemplate/commit/051b84d))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.6
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.5...v0.2.6)
