@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.2.8
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.7...v0.2.8)
+
+### 💅 Refactors
+
+- Unify zod import style in signin.vue and auth.ts ([e56aeac](https://github.com/shba007/nuxtemplate/commit/e56aeac))
+
+### 🏡 Chore
+
+- Update dependencies and license in Cargo.toml; add BuildTask and RustPlugin classes ([2c3c01f](https://github.com/shba007/nuxtemplate/commit/2c3c01f))
+- Update dependencies and package manager version ([0a500c2](https://github.com/shba007/nuxtemplate/commit/0a500c2))
+- Update actions/checkout and actions/setup-java versions in workflows ([d594686](https://github.com/shba007/nuxtemplate/commit/d594686))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.7
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.6...v0.2.7)
