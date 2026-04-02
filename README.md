@@ -141,7 +141,7 @@ signingConfigs {
 signingConfig = signingConfigs.getByName("release")
 ```
 
-put upload-keystore.jks, keystore.properties into src-tauri/gen/android
+put release-keystore.jks, keystore.properties into src-tauri/gen/android
 
 add those files into the .gitignore on the same folder
 
