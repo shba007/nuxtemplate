@@ -46,11 +46,12 @@ async function onEmailSignIn() {
       </header>
       <!-- Google sign-in -->
       <!-- eslint-disable link-checker/valid-route -->
-      <!-- prettier-ignore -->
       <NuxtLink
-to="/auth/google" external
+        to="/auth/google"
+        external
         class="focus:ring-yellow-300 flex w-full items-center justify-center gap-1.5 rounded-lg bg-white px-4 py-3 text-black shadow-sm transition-shadow hover:shadow focus:outline-none focus:ring-2 focus:ring-offset-1"
-        aria-label="Sign in with Google" @click="onOauthSignIn">
+        aria-label="Sign in with Google"
+        @click="onOauthSignIn">
         <NuxtIcon name="local:google" class="text-[18px]" />
         <span class="font-medium text-sm">Sign in with Google</span>
       </NuxtLink>
