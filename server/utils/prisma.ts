@@ -4,7 +4,6 @@ const prismaClientSingleton = () => {
   return new PrismaClient()
 }
 
-// eslint-disable-next-line no-shadow-restricted-names
 declare const globalThis: {
   prismaGlobal: ReturnType<typeof prismaClientSingleton>
 } & typeof global
