@@ -52,10 +52,10 @@ async function onEmailSignIn() {
         class="focus:ring-yellow-300 flex w-full items-center justify-center gap-1.5 rounded-lg bg-white px-4 py-3 text-black shadow-sm transition-shadow hover:shadow focus:outline-none focus:ring-2 focus:ring-offset-1"
         aria-label="Sign in with Google"
         @click="onOauthSignIn">
+        <!-- eslint-enable link-checker/valid-route -->
         <NuxtIcon name="local:google" class="text-[18px]" />
         <span class="font-medium text-sm">Sign in with Google</span>
       </NuxtLink>
-      <!-- eslint-enable link-checker/valid-route -->
       <div class="flex items-center gap-4 opacity-50">
         <span class="h-px flex-1 bg-light-600"></span>
         <span class="text-xs text-light-600">or</span>
