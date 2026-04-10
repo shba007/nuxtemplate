@@ -9,9 +9,6 @@ on:
     branches:
       - develop
 
-env:
-  DATABASE_URL: ${{ vars.DATABASE_URL }}
-
 jobs:
   build:
     if: >
@@ -49,7 +46,7 @@ jobs:
         run: bun run format
 
       - name: 🤖 AutoFix Code
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: apply code fixes [skip ci]'
 
