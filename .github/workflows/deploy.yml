@@ -42,7 +42,7 @@ jobs:
         uses: docker/setup-qemu-action@v4
 
       - name: 🐋 Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: 🐋 Extract Docker metadata
         id: meta
@@ -161,7 +161,7 @@ jobs:
       - name: 🛠️ Setup Vite-Plus
         uses: voidzero-dev/setup-vp@v1
         with:
-          node-version: 'lts'
+          node-version: 'lts/*'
           cache: true
 
       - name: 🛠️ Setup Bun
@@ -247,7 +247,7 @@ jobs:
       - name: 🛠️ Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts'
+          node-version: 'lts/*'
 
       - name: 🛠️ Setup Bun
         uses: oven-sh/setup-bun@v2
