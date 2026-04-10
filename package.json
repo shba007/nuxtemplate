@@ -15,7 +15,7 @@
     "pnpm": "^9.15.0 || ^10.2.0",
     "bun": "^1.2.9"
   },
-  "packageManager": "bun@1.3.11",
+  "packageManager": "bun@1.3.12",
   "scripts": {
     "prepare": "husky || true",
     "postinstall": "nuxt prepare && prisma generate",
@@ -49,7 +49,7 @@
     "test:nuxt": "vitest --project nuxt"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.60.2",
+    "@dotenvx/dotenvx": "^1.61.0",
     "@hannoeru/nuxt-otel": "^0.0.8",
     "@notionhq/client": "^5.17.0",
     "@nuxt/eslint": "^1.15.2",
@@ -57,7 +57,7 @@
     "@nuxt/icon": "^2.2.1",
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "^0.13.2",
-    "@nuxt/test-utils": "^4.0.0",
+    "@nuxt/test-utils": "^4.0.2",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/i18n": "^10.2.4",
     "@nuxtjs/mcp-toolkit": "^0.13.4",
@@ -65,11 +65,11 @@
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@pinia/nuxt": "^0.11.3",
     "@prisma/client": "^7.7.0",
-    "@regle/nuxt": "^1.21.5",
+    "@regle/nuxt": "^1.21.8",
     "@tauri-apps/api": "^2.10.1",
     "@tauri-apps/plugin-shell": "^2.3.5",
     "@types/web-push": "^3.6.4",
-    "@unhead/vue": "^2.1.13",
+    "@unhead/vue": "^3.0.2",
     "@vite-pwa/nuxt": "^1.1.1",
     "@vue-email/components": "^0.0.21",
     "@vue-email/render": "^0.0.9",
@@ -97,10 +97,10 @@
     "happy-dom": "^20.8.9",
     "husky": "^9.1.7",
     "playwright-core": "^1.59.1",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "typescript": "~5.9.3",
-    "vitest": "^4.1.3"
+    "vitest": "^4.1.4"
   },
   "trustedDependencies": [
     "@parcel/watcher",
