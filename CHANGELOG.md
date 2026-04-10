@@ -1,5 +1,44 @@
 # Changelog
 
+## v0.2.10
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.8...v0.2.10)
+
+### 🚀 Enhancements
+
+- Added mcp server and updated packages ([4f2845d](https://github.com/shba007/nuxtemplate/commit/4f2845d))
+- Add tauri-plugin-shell for handling shell commands and update permissions ([07b1421](https://github.com/shba007/nuxtemplate/commit/07b1421))
+
+### 🩹 Fixes
+
+- Downgrade eslint to version 9.39.4 for compatibility ([a949e2f](https://github.com/shba007/nuxtemplate/commit/a949e2f))
+- Add Vite-Plus setup to CI workflows for improved build performance ([e66c897](https://github.com/shba007/nuxtemplate/commit/e66c897))
+- Replace Vite-Plus setup with Node setup in CI workflows ([14e2256](https://github.com/shba007/nuxtemplate/commit/14e2256))
+- Update Node.js version specification to 'lts/\*' in CI workflows ([63a6bcf](https://github.com/shba007/nuxtemplate/commit/63a6bcf))
+
+### 🏡 Chore
+
+- Update dependencies and add test scripts ([55d21f1](https://github.com/shba007/nuxtemplate/commit/55d21f1))
+- Update node engine version and upgrade git-auto-commit and create-pull-request actions ([5aa6ffe](https://github.com/shba007/nuxtemplate/commit/5aa6ffe))
+- Update eslint to version 10.2.0 ([dacf76f](https://github.com/shba007/nuxtemplate/commit/dacf76f))
+- Update package dependencies and package manager version ([d935e2a](https://github.com/shba007/nuxtemplate/commit/d935e2a))
+- Downgrade @unhead/vue to version 2.1.13 in bun.lock and package.json ([fc3bc17](https://github.com/shba007/nuxtemplate/commit/fc3bc17))
+- Upgrade typescript to version 6.0.2 in package.json and bun.lock ([c5238f3](https://github.com/shba007/nuxtemplate/commit/c5238f3))
+
+### 🎨 Styles
+
+- Format template and improve readability in signin.vue ([71a4ee7](https://github.com/shba007/nuxtemplate/commit/71a4ee7))
+
+### 🤖 CI
+
+- **release:** Update version ([a77b61c](https://github.com/shba007/nuxtemplate/commit/a77b61c))
+- **release:** Update version ([3f317f8](https://github.com/shba007/nuxtemplate/commit/3f317f8))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v0.2.9
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.8...v0.2.9)
