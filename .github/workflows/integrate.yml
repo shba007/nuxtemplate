@@ -1,4 +1,4 @@
-name: Nuxt CI
+name: Tauri CI
 
 permissions:
   contents: write
@@ -27,6 +27,12 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+
+      - name: 🛠️ Setup Vite-Plus
+        uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: 'lts'
+          cache: true
 
       - name: 🛠️ Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -64,7 +70,7 @@ jobs:
           bunx changelogen@latest --bump
 
       - name: 🔀 Create or Update Pull Request
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@v7
         with:
           commit-message: 'ci(release): update version'
           title: 'ci(release): update version'
