@@ -244,11 +244,10 @@ jobs:
         with:
           targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
 
-      - name: 🛠️ Setup Vite-Plus
-        uses: voidzero-dev/setup-vp@v1
+      - name: 🛠️ Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 'lts'
-          cache: true
 
       - name: 🛠️ Setup Bun
         uses: oven-sh/setup-bun@v2
