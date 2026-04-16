@@ -4,12 +4,6 @@
 
 # NuxTemplate
 
-<p align="center">
-  <a href="https://shirsendu-bairagi.betteruptime.com">
-    <img src="https://uptime.betterstack.com/status-badges/v3/monitor/10aqw.svg" alt="uptime status">
-  </a>
-</p>
-
 ![Landing](public/previews/landing.webp)
 
 > Nuxt + Typescript + Tailwind + Tauri Template
