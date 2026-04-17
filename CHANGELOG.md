@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.11
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.10...v0.2.11)
+
+### 🏡 Chore
+
+- Update @nuxt/scripts to version 1.0.1 and typescript to version 6.0.3 ([20becce](https://github.com/shba007/nuxtemplate/commit/20becce))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.10
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.8...v0.2.10)
