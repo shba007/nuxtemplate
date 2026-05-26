@@ -103,6 +103,10 @@ bunx giget@latest gh:shba007/nuxtemplate#<branch> <project>
 
 dir public/pwa
 
+## Generate Logo
+
+bun tauri icon ./public/logo.svg
+
 ## Reinitialize Android
 
 rm -rf src-tauri/gen/android
@@ -138,10 +142,6 @@ signingConfig = signingConfigs.getByName("release")
 put release-keystore.jks, keystore.properties into src-tauri/gen/android
 
 add those files into the .gitignore on the same folder
-
-## Generate Logo
-
-bun tauri icon ./public/logo.svg
 
 ## Development Server
 
