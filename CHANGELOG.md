@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.12
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.11...v0.2.12)
+
+### 🩹 Fixes
+
+- Update dependencies in Cargo.toml to include tauri-plugin-shell ([481d664](https://github.com/shba007/nuxtemplate/commit/481d664))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.11
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.10...v0.2.11)
