@@ -1,4 +1,4 @@
-name: Tauri CI
+name: Nuxt CI
 
 permissions:
   contents: write
