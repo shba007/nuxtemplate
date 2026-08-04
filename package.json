@@ -49,7 +49,7 @@
     "test:nuxt": "vitest --project nuxt"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.69.1",
+    "@dotenvx/dotenvx": "^2.19.1",
     "@hannoeru/nuxt-otel": "^0.0.8",
     "@notionhq/client": "^5.22.0",
     "@nuxt/eslint": "^1.15.2",
