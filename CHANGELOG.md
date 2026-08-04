@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.13
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.12...v0.2.13)
+
+### 🩹 Fixes
+
+- Update runtime config structure and adjust health check API ([e7bf2a5](https://github.com/shba007/nuxtemplate/commit/e7bf2a5))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.12
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.11...v0.2.12)
