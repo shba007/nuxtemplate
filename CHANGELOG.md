@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.14
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.13...v0.2.14)
+
+### 🏡 Chore
+
+- Update dependencies and package manager version ([fa75759](https://github.com/shba007/nuxtemplate/commit/fa75759))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.13
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.12...v0.2.13)
