@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.2.15
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.14...v0.2.15)
+
+### 📖 Documentation
+
+- Update README with signing configuration details and environment variables ([61d9ed7](https://github.com/shba007/nuxtemplate/commit/61d9ed7))
+
+### 🏡 Chore
+
+- Update dependencies and add new capabilities ([5163243](https://github.com/shba007/nuxtemplate/commit/5163243))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.14
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.13...v0.2.14)
