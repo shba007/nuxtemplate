@@ -98,6 +98,9 @@ bunx giget@latest gh:shba007/nuxtemplate#<branch> <project>
 
 - Vars
   - USERNAME
+  - GH_PAT
+  - `TAURI_SIGNING_PRIVATE_KEY`: Content of `./src-tauri/app-sign.key`
+  - `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: Key password (leave empty if none)
 
 ## Change the Icons and Screenshots
 
@@ -112,9 +115,13 @@ bun tauri icon ./public/logo.svg
 rm -rf src-tauri/gen/android
 bun tauri android init
 
-set tauri.conf.json to "version": "../package.json",
-
 ## Signing Config
+
+cd src-tauri/gen/android
+
+keytool -genkey -v -keystore release-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release-key
+
+cat ./release-keystore.jks | base64
 
 goto src-tauri/gen/android/app/build.gradle.kts
 
@@ -148,8 +155,6 @@ getByName("release") {
 
 put release-keystore.jks, keystore.properties into src-tauri/gen/android
 
-add those files into the .gitignore on the same folder
-
 ### Desktop Updater Signing Config
 
 **1. Generate Keypair**
@@ -159,16 +164,7 @@ bun x tauri signer generate -w ./src-tauri/app-sign.key
 
 ```
 
-_Copy the public key printed in the terminal._
-
-**2. Add GitHub Repository Secrets**
-
-Go to **Settings** → **Secrets and variables** → **Actions**:
-
-- `TAURI_SIGNING_PRIVATE_KEY`: Content of `./src-tauri/app-sign.key`
-- `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: Key password (leave empty if none)
-
-**3. Configure `src-tauri/tauri.conf.json**`
+**2. Configure `src-tauri/tauri.conf.json`**
 
 ```json
 {
@@ -182,13 +178,6 @@ Go to **Settings** → **Secrets and variables** → **Actions**:
     }
   }
 }
-```
-
-**4. Add Key to `.gitignore**`
-
-```gitignore
-src-tauri/app-sign.key
-
 ```
 
 ## Development Server
