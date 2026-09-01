@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.2.16
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.15...v0.2.16)
+
+### 🩹 Fixes
+
+- Correct console log typo and update dependencies ([ea82875](https://github.com/shba007/nuxtemplate/commit/ea82875))
+
+### 🏡 Chore
+
+- Remove unused Vue Email packages and nodemailer from dependencies ([b6a524f](https://github.com/shba007/nuxtemplate/commit/b6a524f))
+- Remove nuxt-nodemailer dependency ([7a391a0](https://github.com/shba007/nuxtemplate/commit/7a391a0))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.15
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.14...v0.2.15)
