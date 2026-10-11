@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/shba007/nuxtemplate:latest
+    image: ghcr.io/shba007/nuxtemplate:latest@sha256:6262b8b70a4367be2b9dcaaa83d4da0dd130e0019e7bae12a7c39173882d5782
     env_file:
       - .env
     volumes:
