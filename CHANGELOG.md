@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.2.17
+
+[compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.16...v0.2.17)
+
+### 💅 Refactors
+
+- Remove otp email template and integrate external email api for otp dispatch ([97324c4](https://github.com/shba007/nuxtemplate/commit/97324c4))
+
+### 🏡 Chore
+
+- Update tauri dependencies to latest versions ([8a8ff4c](https://github.com/shba007/nuxtemplate/commit/8a8ff4c))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v0.2.16
 
 [compare changes](https://github.com/shba007/nuxtemplate/compare/v0.2.15...v0.2.16)
