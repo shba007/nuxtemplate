@@ -1,5 +1,3 @@
-import vue from '@vitejs/plugin-vue'
-
 const host = process.env.TAURI_DEV_HOST || 'localhost'
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3000
 
@@ -26,9 +24,6 @@ const nativeConfig =
           },
         },
         nitro: {
-          rollupConfig: {
-            plugins: [vue()],
-          },
           prerender: {
             routes: [],
           },
@@ -61,9 +56,6 @@ export default defineNuxtConfig({
   ],
   nitro: {
     compressPublicAssets: true,
-    rollupConfig: {
-      plugins: [vue()],
-    },
     storage: {
       fs: {
         driver: 'fs',
@@ -104,7 +96,8 @@ export default defineNuxtConfig({
       notionDbId: '',
       vapidKey: '',
       vapidSubject: '',
-      emailMetaData: '',
+      emailApiUrl: '',
+      emailApiKey: '',
     },
   },
   app: {
@@ -131,8 +124,13 @@ export default defineNuxtConfig({
   image: {},
   scripts: {
     registry: {
-      googleAnalytics: true,
+      googleAnalytics: {
+        trigger: 'onNuxtReady',
+      },
     },
+  },
+  aiReady: {
+    database: false,
   },
   colorMode: {
     preference: 'system',
@@ -308,19 +306,6 @@ export default defineNuxtConfig({
       type: 'module',
       enabled: false,
       suppressWarnings: false,
-    },
-  },
-  nodemailer: {
-    from: '',
-    host: '',
-    port: '',
-    secure: true,
-    auth: {
-      user: '',
-      pass: '',
-    },
-    tls: {
-      rejectUnauthorized: false,
     },
   },
   ...nativeConfig,

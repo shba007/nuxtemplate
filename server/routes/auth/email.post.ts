@@ -1,40 +1,33 @@
-import type { Component } from 'vue'
-import { render } from '@vue-email/render'
-import emailTemplate from '~~/server/emails'
 import { findOrCreateNotionUser } from '~~/server/routes/auth/google.get'
-import type { EmailMetaData, EmailTemplateData } from '~~/server/emails'
 
-export async function sendEmail<T extends keyof EmailTemplateData>(template: T, payload: EmailTemplateData[T][]) {
-  let isSuccessful = true
+export async function sendOtpEmail(toEmail: string, otp: string): Promise<boolean> {
   const config = useRuntimeConfig()
-  const metaData = config.private.emailMetaData as unknown as EmailMetaData
+  const emailApiUrl = ((config.private as Record<string, unknown>)?.emailApiUrl as string | undefined) || process.env.NUXT_PRIVATE_EMAIL_API_URL
+  const emailApiKey = ((config.private as Record<string, unknown>)?.emailApiKey as string | undefined) || process.env.NUXT_PRIVATE_EMAIL_API_KEY
 
-  await Promise.allSettled(
-    payload.map(async (payloadData) => {
-      try {
-        const allData = { ...metaData, ...emailTemplate[template].data, ...payloadData }
-        const html = await render(emailTemplate[template].template as Component, allData)
-        const text = await render(emailTemplate[template].template as Component, allData, { plainText: true })
+  if (!emailApiUrl) {
+    console.info(`[Email Dispatch] External API not configured. Generated OTP for ${toEmail}: ${otp}`)
+    return true
+  }
 
-        const { transport } = useNodeMailer()
-
-        await transport.verify()
-
-        await transport.sendMail({
-          from: `"${allData.fromCompanyName}" <${allData.fromEmail}>`,
-          to: allData.toEmail,
-          subject: allData.emailSubject,
-          html,
-          text,
-        })
-      } catch (error) {
-        console.error('function sendEmail', error)
-        isSuccessful = false
-      }
+  try {
+    await $fetch(emailApiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(emailApiKey ? { Authorization: `Bearer ${emailApiKey}` } : {}),
+      },
+      body: {
+        to: toEmail,
+        otp,
+        type: 'otp',
+      },
     })
-  )
-
-  return isSuccessful
+    return true
+  } catch (error) {
+    console.error('Failed to trigger external email API:', error)
+    return false
+  }
 }
 
 export default defineEventHandler(async (event) => {
@@ -47,7 +40,7 @@ export default defineEventHandler(async (event) => {
 
     if (!body.otp) {
       const code = generateCode(8, 'alphanumeric')
-      isSuccess = await sendEmail('otp', [{ otp: code, toEmail: body.email }])
+      isSuccess = await sendOtpEmail(body.email, code)
       await authCodeStorage.setItem(body.email, { type: 'email', code, expiresAt: Date.now() + 5 * 60 * 1000 })
     } else {
       const authData = await authCodeStorage.getItem(body.email)

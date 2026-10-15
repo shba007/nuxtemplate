@@ -1,243 +1,377 @@
 <p align="center">
-  <img src="./public/logo.png" lt="Logo" width="65" />
-<p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shba007/nuxtemplate/main/public/logo.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/shba007/nuxtemplate/main/public/logo.png">
+    <img src="https://raw.githubusercontent.com/shba007/nuxtemplate/main/public/logo.png" alt="NuxTemplate Logo" width="80" />
+  </picture>
+</p>
 
-# NuxTemplate
+<h1 align="center">NuxTemplate</h1>
 
-![Landing](public/previews/landing.webp)
+<p align="center">
+  <strong>Universal Full-Stack Application Template powered by Nuxt 4, TypeScript, Tailwind CSS, and Tauri 2</strong>
+</p>
 
-> Nuxt + Typescript + Tailwind + Tauri Template
+<p align="center">
+  <a href="https://github.com/shba007/nuxtemplate/releases"><img src="https://img.shields.io/github/v/release/shba007/nuxtemplate?color=3b82f6&logo=github" alt="GitHub Release" /></a>
+  <a href="https://github.com/shba007/nuxtemplate/blob/main/LICENSE"><img src="https://img.shields.io/github/license/shba007/nuxtemplate?color=green" alt="License: MIT" /></a>
+  <a href="https://github.com/shba007/nuxtemplate/actions/workflows/integrate.yml"><img src="https://github.com/shba007/nuxtemplate/actions/workflows/integrate.yml/badge.svg" alt="Nuxt CI" /></a>
+  <a href="https://github.com/shba007/nuxtemplate/actions/workflows/deploy.yml"><img src="https://github.com/shba007/nuxtemplate/actions/workflows/deploy.yml/badge.svg" alt="Nuxt CD" /></a>
+  <a href="https://bun.sh"><img src="https://img.shields.io/badge/Bun-%3E%3D1.2.9-black?logo=bun" alt="Bun Runtime" /></a>
+  <a href="https://nuxt.com"><img src="https://img.shields.io/badge/Nuxt-4.x-00DC82?logo=nuxt.js&logoColor=white" alt="Nuxt 4" /></a>
+  <a href="https://tauri.app"><img src="https://img.shields.io/badge/Tauri-2.x-24C8DB?logo=tauri&logoColor=white" alt="Tauri 2" /></a>
+</p>
 
-- 📦 SSR
-- 🖼️ OG Tags
-- 🚀 PWA
-- ✋ Push Notification
-- 🌙 Light/Dark Mode
-- 🐋 Containerized
-- 🪄 CI/CD (Github Action)
-- 🎭 Authentication (OAuth 2.0)
-- ⚡️ API Route Caching
-- 📐 Analytics
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shba007/nuxtemplate/main/public/previews/landing.webp" alt="NuxTemplate Landing Preview" width="850" />
+</p>
 
-# Todo
+---
 
-- [ ] Add Testing
+## Overview
 
-## External Dependencies
+**NuxTemplate** is a battle-tested, production-ready starter template for building universal applications across **Web**, **Desktop** (macOS, Windows, Linux), and **Mobile** (Android) from a single Vue 3 codebase. Engineered with Nuxt 4 and Tauri 2, it comes fully wired with server-side rendering, desktop auto-updates, offline PWA service workers, push notifications, and automated GitHub Actions CI/CD pipelines.
 
-- gitleaks
+Designed for rapid delivery, the template features native Google OAuth 2.0 and email OTP authentication, Prisma ORM with SQLite, Model Context Protocol (MCP) server support, and a complete modern developer toolchain powered by Bun.
 
-## Clone Template
+### Features
 
-Clone the template
+- 🌐 **Cross-Platform Target**: Ship simultaneously to Web (SSR/Edge via Nitro), Desktop (macOS Universal, Windows x64, Linux GTK via Tauri 2), and Mobile (Android APK & AAB).
+- 🔄 **Cryptographic In-App Auto-Updates**: Built-in desktop updater (`useAppUpdater`) validating releases against GitHub Releases using Minisign signatures.
+- 📱 **Offline-Ready PWA & Push Notifications**: Workbox service worker caching (NetworkFirst HTML, StaleWhileRevalidate API, CacheFirst assets) paired with Web Push notifications.
+- 🔐 **Authentication & User Management**: Preconfigured Google OAuth 2.0 and passwordless OTP authentication via `nuxt-auth-utils`, integrated with Notion database user sync.
+- 🤖 **Model Context Protocol (MCP) Integration**: Built-in AI tool server powered by `@nuxtjs/mcp-toolkit` and Zod schema validation.
+- 🛠️ **Production Toolchain**: Fast development powered by Bun 1.4, Prisma 7 ORM, Pinia state management, Regle form validation, Tailwind CSS dark mode, Vitest unit testing, and Docker Swarm deployment.
+
+---
+
+## Quick Start
+
+### 1. Scaffold a New Project
+
+Clone the template into a new directory using `giget`:
 
 ```bash
-bunx giget@latest gh:shba007/nuxtemplate#<branch> <project>
+# Using Bun (Recommended)
+bunx giget@latest gh:shba007/nuxtemplate#main my-app
+
+# Using PNPM
+pnpm dlx giget@latest gh:shba007/nuxtemplate#main my-app
+
+# Using NPX
+npx giget@latest gh:shba007/nuxtemplate#main my-app
 ```
 
-## Change Placeholder Value
+### 2. Install Dependencies
 
-### In docker-compose.yml
+```bash
+cd my-app
+bun install
+```
 
-- name
-- image
-- port
+> **Note**: The `postinstall` script automatically executes `nuxt prepare && prisma generate`.
 
-### In package.json change the following
+### 3. Configure Environment
 
-- name
-- description
-- docker:build
-- docker:start
+Copy the example environment configuration:
 
-### In nuxt.config.ts change the following
+```bash
+cp .env.example .env
+```
 
-- site
-  - url
-  - name
-- pwa
-  - manifest
-    - name
-    - short_name
-    - description
-    - theme_color
-    - background_color
+Populate the required credentials in `.env` (see [Environment Variables](#environment-variables)).
 
-### In tailwind.config.ts change the following
+### 4. Run Development Server
 
-- fontFamily
-  - head
-  - body
-- colors
-  - light
-  - dark
-  - primary
-  - success
-  - warning
-  - alert
+```bash
+# Web application (http://localhost:3000)
+bun run dev
 
-### In src-tauri/Cargo.toml change the following
+# Desktop application (Tauri + Nuxt Dev)
+bun run tauri:dev
 
-- name
-- description
-- repository
+# Android mobile application
+bun run tauri:dev:mobile
+```
 
-### In src-tauri/tauri.conf.json change the following
+---
 
-- productName
-- identifier
-- app
-  - windows
-    - title
+## Template Customization Checklist
 
-### In .github\workflows\deploy.yml change the following
+When starting a new project from this template, replace the following project identifiers:
 
-- asset_name [deploy.yml](.github/workflows/deploy.yml) in line 271
+| File                               | Target Fields / Keys                                                                                                         | Description                                                                   |
+| :--------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
+| **`package.json`**                 | `name`, `description`, `author`, `repository.url`, `docker:build`, `docker:start`                                            | Package name, metadata, and Docker container tag.                             |
+| **`nuxt.config.ts`**               | `site.name`, `site.url`, `mcp.name`, `pwa.manifest` (`name`, `short_name`, `description`, `theme_color`, `background_color`) | Site metadata, MCP server name, and PWA manifest properties.                  |
+| **`tailwind.config.ts`**           | `theme.fontFamily.main`, `theme.fontFamily.sub`, `theme.colors` (`light`, `dark`, `primary`, `success`, `warning`, `alert`)  | Custom fonts and color palette scales.                                        |
+| **`src-tauri/Cargo.toml`**         | `[package]` `name`, `description`, `authors`, `repository`                                                                   | Rust crate metadata.                                                          |
+| **`src-tauri/tauri.conf.json`**    | `productName`, `identifier`, `app.windows[0].title`, `plugins.updater.pubkey`, `plugins.updater.endpoints`                   | App bundle ID (e.g. `com.company.app`), window title, and update server URLs. |
+| **`.github/workflows/deploy.yml`** | Lines 270 & 278 (`asset_name`)                                                                                               | Output filename for Android release artifacts (`.apk` and `.aab`).            |
+| **`public/pwa/` & `public/`**      | `logo.png`, `logo.svg`, `favicon.ico`, `public/pwa/icon-*.png`                                                               | Replace template icons and branding assets.                                   |
 
-### In github registry add Repo or Org Vars following
+### Generate Application Icons
 
-- Vars
-  - USERNAME
-  - GH_PAT
-  - `TAURI_SIGNING_PRIVATE_KEY`: Content of `./src-tauri/app-sign.key`
-  - `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: Key password (leave empty if none)
+Generate cross-platform application icons for Tauri (Desktop & Mobile) and PWA from a source image:
 
-## Change the Icons and Screenshots
-
-dir public/pwa
-
-## Generate Logo
-
+```bash
 bun tauri icon ./public/logo.svg
-
-## Reinitialize Android
-
-rm -rf src-tauri/gen/android
-bun tauri android init
-
-## Signing Config
-
-cd src-tauri/gen/android
-
-keytool -genkey -v -keystore release-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release-key
-
-cat ./release-keystore.jks | base64
-
-goto src-tauri/gen/android/app/build.gradle.kts
-
-```kotlin
-import java.io.FileInputStream
-
-defaultConfig {
-...
-}
-signingConfigs {
-    create("release") {
-        val keystorePropertiesFile = rootProject.file("keystore.properties")
-        val keystoreProperties = Properties()
-        if (keystorePropertiesFile.exists()) {
-            keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-        }
-
-        keyAlias = keystoreProperties["keyAlias"] as String
-        keyPassword = keystoreProperties["password"] as String
-        storeFile = file(keystoreProperties["storeFile"] as String)
-        storePassword = keystoreProperties["password"] as String
-    }
-}
-
-getByName("release") {
-    isMinifyEnabled = true
-    signingConfig = signingConfigs.getByName("release")
-...
-}
 ```
 
-put release-keystore.jks, keystore.properties into src-tauri/gen/android
+---
 
-### Desktop Updater Signing Config
+## Codebase Architecture & API Reference
 
-**1. Generate Keypair**
-
-```bash
-bun x tauri signer generate -w ./src-tauri/app-sign.key
+### Project Structure
 
 ```
+├── app/                  # Nuxt 3/4 Application Layer
+│   ├── assets/           # Icons and style assets
+│   ├── components/       # Vue components (AppInstallPrompt, etc.)
+│   ├── composables/      # useAPI, useAppUpdater
+│   ├── middleware/       # Route navigation guards (auth, guest)
+│   ├── pages/            # File-based routing (index, auth/signin, auth/signup)
+│   ├── plugins/          # Nuxt plugins (api client, native links handler)
+│   └── app.vue           # Root component (SEO, schema, service worker, auto-updater)
+├── server/               # Nitro Server Engine
+│   ├── api/              # API Endpoints (health, user, push notifications, sitemap)
+│   ├── emails/           # Transactional email definitions & templates
+│   ├── mcp/              # Model Context Protocol tools (defineMcpTool)
+│   ├── middleware/       # Server request middleware (auth verification)
+│   ├── routes/           # Server routes (Google OAuth callback, Email OTP)
+│   └── utils/            # Prisma client instance, Notion integration, helpers
+├── shared/               # Universal code shared between client and server
+│   ├── types/            # Zod validation schemas (emailFormSchema, userFormSchema)
+│   └── utils/            # Case conversion and shared utilities
+├── prisma/               # Database schema & migrations (SQLite default)
+├── public/               # Static assets & Service Worker scripts (sw-main.ts, sw-push.ts)
+├── src-tauri/            # Tauri 2 native desktop and mobile configuration
+└── test/                 # Test suites (k6 load testing, Vitest unit tests)
+```
 
-**2. Configure `src-tauri/tauri.conf.json`**
+### Key Composables
 
-```json
-{
-  "bundle": {
-    "createUpdaterArtifacts": true
-  },
-  "plugins": {
-    "updater": {
-      "pubkey": "YOUR_PUBLIC_KEY_HERE",
-      "endpoints": ["https://github.com/<OWNER>/<REPO>/releases/latest/download/latest.json"]
-    }
+#### `useAppUpdater(options?: UseAppUpdaterOptions)`
+
+Configures desktop background update checking and installation via `@tauri-apps/plugin-updater`.
+
+- **Options Interface**:
+  ```ts
+  interface UseAppUpdaterOptions {
+    checkOnStartup?: boolean // Default: true
+    autoInstall?: boolean // Default: false
   }
-}
-```
+  ```
+- **Returns**:
+  ```ts
+  {
+    isChecking: Ref<boolean>,
+    isDownloading: Ref<boolean>,
+    updateAvailable: Ref<boolean>,
+    progress: Ref<number>,
+    error: Ref<string | null>,
+    version: Ref<string | null>,
+    releaseNotes: Ref<string | null>,
+    checkForUpdates: () => Promise<void>,
+    downloadAndInstall: () => Promise<void>
+  }
+  ```
 
-## Development Server
+#### `useAPI(url, options)`
 
-Start the development server on `http://localhost:3000`:
+Custom wrapper over Nuxt's `createUseFetch` automatically pre-pending `runtimeConfig.public.siteUrl` as the base API URL.
 
-## How to Deploy
+### Server API Endpoints
 
-1. Initialize Swarm on the Manager Node
+| Endpoint                                 |  Method  |  Authentication  | Description                                                                                 |
+| :--------------------------------------- | :------: | :--------------: | :------------------------------------------------------------------------------------------ |
+| `/api/health`                            |  `GET`   |      Public      | Returns server health status, build time, and host node identifier.                         |
+| `/auth/google`                           |  `GET`   |      Public      | Initiates Google OAuth 2.0 flow; syncs user profile with Notion and issues session cookie.  |
+| `/auth/email`                            |  `POST`  |      Public      | Handles two-stage passwordless login: generates 8-char OTP, sends email, and validates OTP. |
+| `/api/user`                              |  `POST`  |     Required     | Validates input against `userFormSchema` and updates profile in Notion.                     |
+| `/api/notification/push/subscribe`       |  `POST`  |      Public      | Saves browser `PushSubscription` into storage (`data:subscription:notification`).           |
+| `/api/notification/push/send`            |  `POST`  | Internal / Admin | Broadcasts a push notification to all stored subscribers.                                   |
+| `/api/notification/push/:id/send`        |  `POST`  | Internal / Admin | Sends a push notification to a specific subscription ID.                                    |
+| `/api/notification/push/:id/unsubscribe` | `DELETE` |      Public      | Removes a push notification subscription by ID.                                             |
+| `/api/__sitemap__/urls`                  |  `GET`   |      Public      | Dynamic sitemap URL provider consumed by `@nuxtjs/seo`.                                     |
+
+---
+
+## Desktop & Mobile Release Signing
+
+### 1. Desktop Updater Signing (Tauri)
+
+The desktop updater verifies update bundles cryptographically before installation.
+
+1. **Generate Minisign Keypair**:
+   ```bash
+   bun x @tauri-apps/cli signer generate -w ./src-tauri/app-sign.key
+   ```
+2. **Configure Public Key**:
+   Paste the generated public key into `src-tauri/tauri.conf.json`:
+   ```json
+   {
+     "plugins": {
+       "updater": {
+         "pubkey": "YOUR_GENERATED_PUBLIC_KEY",
+         "endpoints": ["https://github.com/<OWNER>/<REPO>/releases/latest/download/latest.json"]
+       }
+     }
+   }
+   ```
+3. **Configure CI Secrets**:
+   Save the private key and password as GitHub repository secrets:
+   - `TAURI_SIGNING_PRIVATE_KEY`: Complete content of `./src-tauri/app-sign.key`
+   - `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: Passphrase used when generating the key (leave blank if none).
+
+### 2. Android Keystore Signing
+
+1. **Generate Keystore**:
+   ```bash
+   cd src-tauri/gen/android
+   keytool -genkey -v -keystore release-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release-key
+   ```
+2. **Export Keystore to Base64 (for CI)**:
+   ```bash
+   cat release-keystore.jks | base64
+   ```
+3. **Local Android Development**:
+   Create `src-tauri/gen/android/keystore.properties`:
+   ```properties
+   keyAlias=release-key
+   password=YOUR_KEYSTORE_PASSWORD
+   storeFile=../release-keystore.jks
+   ```
+4. **Re-initialize Android (if modifying bundle ID)**:
+   ```bash
+   rm -rf src-tauri/gen/android
+   bun tauri android init
+   ```
+
+---
+
+## Environment Variables
+
+Configure the following environment variables in `.env` (development) and your production deployment:
+
+| Variable                                  |  Type   | Required | Description                                                                          |
+| :---------------------------------------- | :-----: | :------: | :----------------------------------------------------------------------------------- |
+| `NODE_ENV`                                | String  |   Yes    | Runtime environment (`development` \| `production`).                                 |
+| `DATABASE_URL`                            | String  |   Yes    | Prisma connection string (e.g. `file:./dev.db`).                                     |
+| `NUXT_SESSION_PASSWORD`                   | String  |   Yes    | At least 32-character random string used by `nuxt-auth-utils` to seal cookies.       |
+| `NUXT_PUBLIC_SITE_URL`                    |   URL   |   Yes    | Canonical public URL of the application.                                             |
+| `NUXT_OAUTH_GOOGLE_CLIENT_ID`             | String  | Optional | Google Cloud OAuth Client ID for social authentication.                              |
+| `NUXT_OAUTH_GOOGLE_CLIENT_SECRET`         | String  | Optional | Google Cloud OAuth Client Secret.                                                    |
+| `NUXT_OAUTH_GOOGLE_REDIRECT_URL`          |   URL   | Optional | Authorized OAuth redirect URL.                                                       |
+| `NOTION_API_KEY`                          | String  | Optional | Notion Integration token for user profile database persistence.                      |
+| `NUXT_PRIVATE_NOTION_DB_ID`               | JSON/ID | Optional | Target Notion Database ID mapping for user storage.                                  |
+| `NUXT_PUBLIC_VAPID_KEY`                   | String  | Optional | Public VAPID key for Web Push client subscription.                                   |
+| `NUXT_PRIVATE_VAPID_KEY`                  | String  | Optional | Private VAPID key for signing web push payloads.                                     |
+| `NUXT_PRIVATE_VAPID_SUBJECT`              | String  | Optional | `mailto:` address associated with VAPID keys.                                        |
+| `NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID` | String  | Optional | Google Analytics Measurement ID (e.g. `G-XXXXXXXXXX`).                               |
+| `NUXT_OG_IMAGE_SECRET`                    | String  | Optional | Secret key for dynamic OpenGraph image signing.                                      |
+| `NUXT_PRIVATE_EMAIL_API_URL`              |   URL   | Optional | Endpoint URL for email dispatch API (e.g. Resend, webhook, or custom email service). |
+| `NUXT_PRIVATE_EMAIL_API_KEY`              | String  | Optional | API key / Bearer token used for authenticating with the email dispatch API.          |
+
+### GitHub Actions Secrets & Variables
+
+Configure these settings under **Settings > Secrets and variables > Actions** for automated CI/CD:
+
+| Name                                 |   Type   | Description                                                  |
+| :----------------------------------- | :------: | :----------------------------------------------------------- |
+| `USERNAME`                           | Variable | GitHub / Container registry username.                        |
+| `SITE_URL`                           | Variable | Production site URL passed to Docker and Tauri builds.       |
+| `DATABASE_URL`                       | Variable | Database connection string used during integration tests.    |
+| `GH_PAT`                             |  Secret  | GitHub Personal Access Token for changelog release creation. |
+| `TAURI_SIGNING_PRIVATE_KEY`          |  Secret  | Private key for signing Tauri desktop updater binaries.      |
+| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` |  Secret  | Password for the Tauri updater private key.                  |
+| `ANDROID_KEY_ALIAS`                  |  Secret  | Key alias name in `release-keystore.jks`.                    |
+| `ANDROID_KEY_PASSWORD`               |  Secret  | Password for the Android release keystore.                   |
+| `ANDROID_KEY_BASE64`                 |  Secret  | Base64-encoded string of `release-keystore.jks`.             |
+
+---
+
+## Production Deployment
+
+### Docker Container
+
+The project includes an optimized multi-stage `Dockerfile` running on `oven/bun:1-alpine`.
 
 ```bash
-docker swarm init --advertise-addr <MANAGER-IP>
+# Build the container image
+bun run docker:build
+
+# Run the container locally on port 4000
+bun run docker:start
 ```
 
-2. Join Worker Nodes to the Swarm
+### Docker Swarm Stack
 
-```bash
-docker swarm join --token <WORKER-TOKEN> <MANAGER-IP>:2377
-```
+The production stack configuration is defined in `docker-compose.prod.yml`:
 
-3. Check Node Status
+1. **Initialize Swarm on Manager Node**:
+   ```bash
+   docker swarm init --advertise-addr <MANAGER-IP>
+   ```
+2. **Create Persistent Data Directory on Host**:
+   ```bash
+   mkdir -p /root/nuxtemplate/.data
+   ```
+3. **Deploy the Stack**:
+   ```bash
+   docker stack deploy --compose-file docker-compose.prod.yml nuxtemplate
+   ```
+4. **Scale Services**:
+   ```bash
+   docker service scale nuxtemplate_app=2
+   ```
 
-```bash
-docker node ls
-```
+---
 
-4. Create a docker volume
+## Development
 
-```bash
-docker volume create \
-  --name nuxtemplate_static \
-  --driver local \
-  --opt type=none \
-  --opt device=~/shba007/nuxtemplate/static \
-  --opt o=bind
-```
+<details>
+<summary><strong>Available Scripts & Tasks</strong></summary>
 
-5. Use Docker Stack to deploy multi-container application
+All scripts are executed using Bun:
 
-```bash
-upload static into /root/nuxtemplate
-```
+| Script                          | Command                                              | Purpose                                                    |
+| :------------------------------ | :--------------------------------------------------- | :--------------------------------------------------------- |
+| `bun run dev`                   | `nuxt dev`                                           | Start Nuxt development server with hot-module replacement. |
+| `bun run build`                 | `nuxt build`                                         | Build the full-stack Nuxt application for production.      |
+| `bun run generate`              | `nuxt generate`                                      | Prerender static HTML for distribution (used by Tauri).    |
+| `bun run preview`               | `nuxt preview`                                       | Locally preview the production build output.               |
+| `bun run start`                 | `node --env-file=.env.prod .output/server/index.mjs` | Start production server with environment variables.        |
+| `bun run clean`                 | `nuxt cleanup && (cd src-tauri && cargo clean)`      | Clean Nuxt build cache and Cargo artifacts.                |
+| `bun run lint`                  | `eslint . --fix`                                     | Lint codebase with ESLint and auto-fix violations.         |
+| `bun run format`                | `prettier . --write`                                 | Format code using Prettier with Tailwind CSS sorting.      |
+| `bun run detect`                | `gitleaks git --verbose`                             | Scan commit history for secrets using Gitleaks.            |
+| `bun run test`                  | `vitest`                                             | Run unit and component test suites with Vitest.            |
+| `bun run test:watch`            | `vitest --watch`                                     | Run Vitest in interactive watch mode.                      |
+| `bun run test:coverage`         | `vitest --coverage`                                  | Generate code test coverage report.                        |
+| `bun run test:unit`             | `vitest --project unit`                              | Run unit test project suite only.                          |
+| `bun run test:nuxt`             | `vitest --project nuxt`                              | Run Nuxt-specific test suite.                              |
+| `bun run test:load`             | `k6 run test/load.test.ts`                           | Execute API load testing suite with k6.                    |
+| `bun run prisma:push`           | `prisma db push`                                     | Push schema changes directly to the database.              |
+| `bun run prisma:pull`           | `prisma db pull`                                     | Introspect existing database into Prisma schema.           |
+| `bun run prisma:migrate:dev`    | `prisma migrate dev`                                 | Create and apply migration in development.                 |
+| `bun run prisma:migrate:deploy` | `prisma migrate deploy`                              | Apply pending migrations in production.                    |
+| `bun run prisma:studio`         | `prisma studio`                                      | Open Prisma Studio GUI to view and edit database data.     |
+| `bun run tauri:dev`             | `tauri dev`                                          | Launch native desktop application in development mode.     |
+| `bun run tauri:build`           | `tauri build`                                        | Build native desktop binaries for current host OS.         |
+| `bun run tauri:dev:mobile`      | `tauri android dev`                                  | Launch Android application in emulator / connected device. |
+| `bun run tauri:build:mobile`    | `tauri android build`                                | Compile Android universal release APK and AAB.             |
 
-6. Scale service
+</details>
 
-```bash
-docker service scale nuxtemplate_app=2
-```
-
-7. Verify
-
-```bash
-docker service ls
-docker service ps nuxtemplate_app
-```
+---
 
 ## License
 
 Published under the [MIT](https://github.com/shba007/nuxtemplate/blob/main/LICENSE) license.
-<br><br>
+
+<br>
+
 <a href="https://github.com/shba007/nuxtemplate/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=shba007/nuxtemplate" />
+  <img src="https://contrib.rocks/image?repo=shba007/nuxtemplate" alt="Contributors" />
 </a>
